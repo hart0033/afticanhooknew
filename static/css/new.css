@@ -1,0 +1,133 @@
+.banner-item-01 {
+    background-image: url("{{ sl.picture.url }}");
+  }
+  .banner-item-02 {
+    background-image: url("{{ sl2.picture.url }}");
+  }
+  .banner-item-03 {
+    background-image: url("{{ sl3.picture.url }}");
+  }
+  .nav-item button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  /* Style for the modal */
+  .w3-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px; /* Location of the box */
+  }
+
+  /* Style for modal content */
+  .w3-modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 5% from the top, centered */
+    padding: 50px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    height: 200px;
+  }
+  .w3-container a {
+    flex: 1; /* Each link takes equal space */
+    margin: 0 10px 10px 0; /* Add margin for spacing */
+    text-decoration: none; /* Remove default underline */
+    color: white; /* Change text color */
+    font-size: 16px; /* Change font size */
+    border: 1px solid #4CAF50;
+    background-color: #4CAF50;
+    padding: 8px 12px; /* Add padding */
+    border-radius: 4px; /* Add border radius */
+    transition: border-color 0.3s ease; /* Add transition effect for border color */
+}
+
+.w3-container a:hover {
+    border-color: black; /* Change border color on hover */
+}
+.w3-container a img {
+    max-width: 8%; /* Make sure images don't overflow container */
+}
+  /* Close button */
+  .w3-button {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .w3-button:hover,
+  .w3-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .w3-display-topright {
+    top: 0;
+    right: 0;
+  }
+  /* CSS for styling the close button */
+.w3-modal-content .w3-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px 12px;
+    font-size: 68px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #000;
+}
+
+.w3-modal-content .w3-button:hover {
+    color: #ff0000; /* Change color on hover */
+}
+
+  /* Styles for mobile devices */
+@media only screen and (max-width: 600px) {
+    /* Adjust styles for the modal */
+    .w3-modal-content {
+      width: 80%; /* Adjust width for smaller screens */
+      padding: 20px; /* Adjust padding */
+    }
+  
+    /* Adjust styles for the button */
+    .nav-item button {
+      padding: 8px 16px; /* Adjust padding */
+      font-size: 14px; /* Adjust font size */
+    }
+  
+    /* Adjust styles for the links within .w3-container */
+    .w3-container a {
+      font-size: 10px; /* Adjust font size */
+    }
+  
+    /* Adjust styles for the close button */
+    .w3-button {
+      font-size: 24px; /* Adjust font size */
+    }
+  
+    /* Adjust styles for the top right element */
+    .w3-display-topright {
+      right: 5px; /* Adjust right position */
+    }
+  }
+  
