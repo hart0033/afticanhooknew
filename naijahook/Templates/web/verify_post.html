@@ -91,21 +91,34 @@
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    <h5 style="margin: 10px;">Verify Your Post</h5>
-    <p style="margin: 10px;"> No Other Person Will See The Picture Will Be Deleted After  Verification.</p><br>
+    <h5 style="margin: 5px;">Verify Your Post</h5>
+    <p style="margin: 5px;"> No Other Person Will See The Picture Will Be Deleted After  Verification.</p><br>
      <div class="form-group" 
      style="
-      padding: 14px;
+      padding: 5px;
      "
      >
+
       <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-         {{form.as_p}}
-         <input type="hidden" name="reported_post" value="{{ ads.id }}">
+        <img width="20%" src="{% static 'images/pic.webp' %}" alt="">
+          Exmples
+        <img width="20%" src="{% static 'images/id2.jpg' %}" alt="">
+         Exmples
+        <div class="form-group">
+          <p> A Selfie With Any ID Card To Be Sure To Be Sure It Really You</p>
+          
+          {{ form.Picture_With_ID }}
+        </div>
+        <div class="form-group">
+          <p>Front Of Your ID To Prove Your Age</p>
+          {{ form.ID_Front }}
+        </div>
+        <p>Note: Every Information Sent will be deleted After Verification</p>
          <br>
           <button class="btn btn-primary btn-lg btn-block"
           style="
-           padding: 10px;
+           padding: 5px;
            max-width: 100px;
             "
           type="submit">Submit</button>

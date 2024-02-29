@@ -341,7 +341,7 @@ def report_post(request, id):
             report.reported_post = ads
             report.save()
             messages.success(request, 'Post reported successfully.')
-            return redirect('view_post', id=id)  # Redirect to home page or any other appropriate page
+            return redirect('view_post', id=id)  
         else:
             messages.error(request, 'Invalid form submission.')
             return redirect('report_post', id=id)
