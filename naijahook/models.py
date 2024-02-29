@@ -36,11 +36,6 @@ class postads(models.Model):
     service = models.ManyToManyField(Service)
     suspended = models.BooleanField(default=False)
     verification = models.BooleanField(default=False)
-    def formatted_shot_time(self):
-        return humanize.intcomma(self.shot_time)
-
-    def formatted_full_night(self):
-        return humanize.intcomma(self.full_night)
     
     def __str__(self):
        return f"{self.name} - Posted by {self.author}"
@@ -68,9 +63,18 @@ class adsvideos(models.Model):
     service = models.ManyToManyField(Service)
     view_count = models.PositiveIntegerField(default=0)
     suspended = models.BooleanField(default=False) 
+    verification = models.BooleanField(default=False)
     def __str__(self):
-        return f"{self.name}''''Posted by''''{self.author}"
+     return f"{self.name} - Posted by: {self.author.username}"
 
+
+
+class verify_video(models.Model):
+    Post = models.ForeignKey(adsvideos, on_delete=models.CASCADE)
+    Picture_With_ID = models.ImageField(null=False, blank=False)
+    ID_Front = models.ImageField(null=False, blank=False)
+    def __str__(self):
+       return f" verification for {self.Post}"
     
 class review(models.Model):
     ads = models.ForeignKey(postads, related_name='reviews',  on_delete=models.CASCADE)

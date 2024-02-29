@@ -12,7 +12,7 @@ from . tokens import generate_tokens
 from django.core.mail import EmailMessage
 from django.utils.http import urlsafe_base64_encode
 from .models import Service, postads, State, slide, slide2,slide3,adsvideos
-from .form import PasswordResetForm, ReportForm, adsvideos_form, postads_form, review_form, verifyForm, videoreview_form
+from .form import PasswordResetForm, ReportForm, adsvideos_form, postads_form, review_form, verifyForm, verifyvideoForm, videoreview_form
 from django.core.mail import send_mail
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
@@ -46,9 +46,9 @@ def home(request):
 def videos(request):
     s = request.GET.get('State')
     if s == None:
-        video = adsvideos.objects.filter(suspended=False).order_by('-date_post')
+        video = adsvideos.objects.filter(suspended=False).order_by('-verification')
     else:
-        video = adsvideos.objects.filter(State__State=s, suspended=False,).order_by('verification') 
+        video = adsvideos.objects.filter(State__State=s, suspended=False,).order_by('-verification') 
     s = State.objects.all()
     context = {
     's' : s,
@@ -365,6 +365,23 @@ def verify_post(request, id):
     else:
         form = verifyForm()
     return render(request, 'web/verify_post.html', {'form': form, 'user_ads': user_ads})
+@login_required(login_url="/signin")
+def verify_video(request, id):
+    user_video = adsvideos.objects.get(pk=id)
+    if request.method == 'POST':
+        form = verifyvideoForm(request.POST, request.FILES)
+        if form.is_valid():
+            verify = form.save(commit=False)
+            verify.Post = user_video
+            verify.save()
+            messages.success(request, 'Post verification submitted successfully it takes 24 hours for your videos to be verified.')
+            return redirect('view_video', id=id)
+        else:
+            messages.error(request, 'Invalid form submission.')
+            return redirect('verify_video', id=id)
+    else:
+        form = verifyForm()
+    return render(request, 'web/verify_video.html', {'form': form, 'user_video': user_video})
 @login_required(login_url="/signin")
 def edit_profile(request):
     if request.method == 'POST':

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Report, Service, postads,review,adsvideos, verify_Post, videosreview
+from .models import Report, Service, postads,review,adsvideos, verify_Post, verify_video, videosreview
 from phonenumber_field.formfields import PhoneNumberField
 
 class postads_form(forms.ModelForm):
@@ -176,6 +176,22 @@ class ReportForm(forms.ModelForm):
 class verifyForm(forms.ModelForm):
     class Meta:
         model = verify_Post
+        fields = ['Picture_With_ID', 'ID_Front']
+        widgets = {
+                'Picture_With_ID': forms.ClearableFileInput(attrs={
+                    'class': "form-control",
+                    'style': 'max-width: 300px;',
+                    'placeholder': 'Name',
+                    }),
+                'ID_Front': forms.ClearableFileInput(attrs={
+                    'class': "form-control",
+                    'style': 'max-width: 300px;',
+                    'placeholder': 'Your Review',
+                    }),
+                }
+class verifyvideoForm(forms.ModelForm):
+    class Meta:
+        model = verify_video
         fields = ['Picture_With_ID', 'ID_Front']
         widgets = {
                 'Picture_With_ID': forms.ClearableFileInput(attrs={

@@ -9,6 +9,7 @@ urlpatterns = [
     path('userview_post/<int:id>', views.userview_video, name='userview_post'),
     path('report/<int:id>/', views.report_post, name='report_post'),
     path('verify/<int:id>', views.verify_post, name='verify_post'),
+    path('verify_video/<int:id>', views.verify_video, name='verify_video'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('view_post/<int:id>', views.view_post, name='view_post'),
     path('view_video/<int:id>', views.view_video, name='view_video'),
