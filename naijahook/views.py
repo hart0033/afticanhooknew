@@ -5,11 +5,9 @@ from django.contrib.auth import authenticate, login , logout
 from django.urls import reverse
 from hartlord import settings
 from django.core.mail import send_mail
-from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes, force_str
+from django.utils.encoding import force_str
 from . tokens import generate_tokens
-from django.core.mail import EmailMessage
 from django.utils.http import urlsafe_base64_encode
 from .models import Service, postads, State, slide, slide2,slide3,adsvideos
 from .form import PasswordResetForm, ReportForm, adsvideos_form, postads_form, review_form, verifyForm, verifyvideoForm, videoreview_form
