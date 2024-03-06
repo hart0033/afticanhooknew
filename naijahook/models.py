@@ -49,13 +49,13 @@ class verify_Post(models.Model):
     
 class adsvideos(models.Model):
     name = models.CharField(max_length=300,)
-    email = models.EmailField( max_length=254,null=False, blank=False )
-    number = PhoneNumberField(blank=False, null=False )
+    email = models.EmailField( max_length=254,blank=True, null=True )
+    number = PhoneNumberField(blank=True, null=True )
     whatsapp = PhoneNumberField(blank=True, null=True )
     telegram = PhoneNumberField(blank=True, null=True )
     video = models.FileField(blank=True, null=True, upload_to='videos/')
     bio = models.TextField(max_length=3000)
-    State = models.ForeignKey(State, on_delete=models.CASCADE, null=False, blank=False)
+    State = models.ForeignKey(State, on_delete=models.CASCADE, blank=True, null=True)
     date_post = models.DateTimeField(auto_now=True)
     shot_time = models.DecimalField(max_digits=10, decimal_places=2)
     full_night = models.DecimalField(max_digits=10, decimal_places=2)
