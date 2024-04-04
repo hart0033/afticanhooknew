@@ -1,8 +1,9 @@
-import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.humanize.templatetags import humanize
+
+
 
 
 

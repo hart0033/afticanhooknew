@@ -12,16 +12,24 @@
     <link href={% static "https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" %}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>hookup</title>
+    <title>{{user_ads.name}}</title>
 
     <!-- Bootstrap core CSS -->
     <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
 
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
-    <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
-    <link rel="stylesheet" href={% static "css/owl.css" %}>
+   <!-- Additional CSS Files -->
+   <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
+   <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
+   <link rel="stylesheet" href={% static "css/owl.css" %}>
+   <link rel="stylesheet" href={% static "css/new.css" %}>
+   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+   <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+   <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+   <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+   <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
@@ -41,7 +49,7 @@
         margin: auto;
         overflow: hidden;
       }
-
+  
       .slides {
         display: flex;
         transition: transform 0.5s ease-in-out;
@@ -93,56 +101,63 @@
         margin: 0;
     }
 /* tab*/
-.tab {
-  cursor: pointer;
-  padding: 1px 5px;
-  margin-right: 8px; /* Darker background color for tabs */
-  color: #181717; /* White text color for tabs */
-  border: 1px solid #ccc;
-  border-radius: 5px 5px 0 0;
-}
+    .tabs {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;; /* Black background color for tabs */
+    }
 
-.tab-content {
-  color: white;
-  display: none;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 0 0 5px 5px;
-  background-color: #555;
-}
+  .tab {
+      cursor: pointer;
+      padding: 1px 5px;
+      margin-right: 8px; /* Darker background color for tabs */
+      color: #181717; /* White text color for tabs */
+      border: 1px solid #ccc;
+      border-radius: 5px 5px 0 0;
+    }
 
-.tab-content.active {
-color: white;
-display: block;
-background-color: #555;
-}
-.tab.active {
-color: white;
-display: block;
-background-color: #555;
-}
-label{
-color: white;
-}
-.gallery {
-display: flex;
-flex-wrap: wrap;
-gap: 3px;
-}
+  .tab-content {
+      color: white;
+      display: none;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 0 0 5px 5px;
+      background-color: #555;
+    }
 
-.gallery-item {
-flex: 1 1 calc(33.33% - 10px);
-max-width: calc(33.33% - 10px);
-overflow: hidden;
-position: relative;
-border-radius: 3px white solid;
-}
+  .tab-content.active {
+    color: white;
+    display: block;
+    background-color: #555;
+  }
+  .tab.active {
+    color: white;
+    display: block;
+    background-color: #555;
+  }
+  label{
+    color: white;
+  }
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
 
-.gallery-item img {
-width: 110%;
-height: 200px;
-display: block;
-}
+  .gallery-item {
+    flex: 1 1 calc(33.33% - 10px);
+    max-width: calc(33.33% - 10px);
+    overflow: hidden;
+    position: relative;
+    border-radius: 3px white solid;
+  }
+
+  .gallery-item img {
+    width: 110%;
+    height: 200px;
+    display: block;
+  }
   
     </style>
 
@@ -162,18 +177,41 @@ display: block;
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href=""><h2>Sixteen <em>Clothing</em></h2></a>
+          <a class="navbar-brand" href="{%url "home"%}"><h2>African <em>Hook</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href={%url "home"%}>Home<i class="fa fa-home"></i>
+                  <span class="sr-only">(current)</span>
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="/post">Post Ads<i class="fa fa-plus-circle"></i></a>
+                <a class="nav-link" href={%url "videos"%}>Videos
+                </a>
+              </li>
+              <li class="nav-item">
+                <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
+                <div class="w3-container">
+                  
+                  <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content">
+                      <div class="w3-container">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
+                        <a href="{%url "post" %}">
+                          <img src="{% static 'images/picon.webp' %}" alt="">
+                          Post Picture
+                        </a>
+                        <a href="{%url "postvideo" %}">
+                          <img src="{% static 'images/vicon.png' %}" alt="">
+                          Post Video
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
 
               <li class="nav-item">

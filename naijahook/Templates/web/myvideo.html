@@ -12,7 +12,7 @@
     <link href={% static "https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" %}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>hookup</title>
+    <title>{{video.name}}</title>
 
     <!-- Bootstrap core CSS -->
     <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
@@ -22,9 +22,14 @@
     <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
     <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
     <link rel="stylesheet" href={% static "css/owl.css" %}>
+    <link rel="stylesheet" href={% static "css/new.css" %}>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
    </head>
 
   </head>
@@ -169,7 +174,7 @@
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href=""><h2>Sixteen <em>Clothing</em></h2></a>
+          <a class="navbar-brand" href="{%url "home"%}"><h2>African <em>Hook</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -177,10 +182,33 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link" href={%url "home"%}>Home<i class="fa fa-home"></i>
+                  <span class="sr-only">(current)</span>
                 </a>
               </li> 
+              <li class="nav-item active">
+                <a class="nav-link" href={%url "videos"%}>Videos
+                </a>
+              </li>
               <li class="nav-item">
-                <a class="nav-link" href="/post">Post Ads<i class="fa fa-plus-circle"></i></a>
+                <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
+                <div class="w3-container">
+                  
+                  <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content">
+                      <div class="w3-container">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
+                        <a href="{%url "post" %}">
+                          <img src="{% static 'images/picon.webp' %}" alt="">
+                          Post Picture
+                        </a>
+                        <a href="{%url "postvideo" %}">
+                          <img src="{% static 'images/vicon.png' %}" alt="">
+                          Post Video
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
 
               <li class="nav-item">
@@ -216,7 +244,7 @@
           </div>
           <div class="col-md-6">
             <h6 style="font-size: xx-small;">Username : {{video.author}}</h6>
-                <video height="500px" width="500px" controls src="{{ video.video.url }}" type="video/mp4"></video>
+                <video height="500px" width="370px" controls src="{{ video.video.url }}" type="video/mp4"></video>
           </div>
           <div class="col-md-6">
             <div class="left-content">
@@ -238,7 +266,7 @@
                   <li ><a style="background-color: #25D366; color:white;" href="https://wa.me/{{video.whatsapp}}"><i  class="fa fa-whatsapp"></i></a></li>
                 {%endif%}
 
-                {% if not ads.telegram %}
+                {% if not video.telegram %}
                 {% else%}
                   <li ><a style="background-color: #0088cc; color:white;" href="https://t.me/{{video.telegram}}"><i  class="fa fa-telegram"></i></a></li>
                 {%endif%}
@@ -247,14 +275,14 @@
           <div id="tab4" class="tab-content">
             <div>
               <h3>Reviews....</h3>
-              {% if not ads.reviews.all %}
+              {% if not video.videoreviews.all %}
                 <p style="color: white;"> NO REVIEWS ..... </p>
               {% else %}
-                {% for review in ads.reviews.all %}
+                {% for videoreview in video.videoreviews.all %}
                   <strong
                   style="text-transform: capitalize; "
-                  >{{review.name}} - </strong> <small>{{review.date_post}} </small>
-                  <p style="color: white;">{{review.body}}<br/></p>
+                  >{{videoreview.name}} - </strong> <small>{{videoreview.date_post}} </small>
+                  <p style="color: white;">{{videoreview.body}}<br/></p>
                 {%endfor%}
               {%endif%}  
             </div>

@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link href={% static "https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" %}>
 
-    <title>hookup</title>
+    <title>Verify Video</title>
 
     <!-- Bootstrap core CSS -->
     <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
@@ -21,6 +21,14 @@
     <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
     <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
     <link rel="stylesheet" href={% static "css/owl.css" %}>
+    <link rel="stylesheet" href={% static "css/new.css" %}>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
 
   </head>
   <style>
@@ -44,18 +52,41 @@
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href=""><h2>Sixteen <em>Clothing</em></h2></a>
+          <a class="navbar-brand" href="{%url "home"%}"><h2>African <em>Hook</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-            <a class="nav-link" href={%url "home"%}>Home<i class="fa fa-home"></i>
+              <li class="nav-item active">
+                <a class="nav-link" href={%url "home"%}>Home<i class="fa fa-home"></i>
+                  <span class="sr-only">(current)</span>
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="/post">Post Ads<i class="fa fa-plus-circle"></i></a>
+                <a class="nav-link" href={%url "videos"%}>Videos
+                </a>
+              </li>
+              <li class="nav-item">
+                <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
+                <div class="w3-container">
+                  
+                  <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content">
+                      <div class="w3-container">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
+                        <a href="{%url "post" %}">
+                          <img src="{% static 'images/picon.webp' %}" alt="">
+                          Post Picture
+                        </a>
+                        <a href="{%url "postvideo" %}">
+                          <img src="{% static 'images/vicon.png' %}" alt="">
+                          Post Video
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
 
               <li class="nav-item">
@@ -63,12 +94,15 @@
               </li>
             {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'edit_profile' %}">Change your password</a>
-                <span class="sr-only">(current)</span>
+                <a class="nav-link" href="/useraccount">My Account<i class="fa fa-user"></i></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/signout">Logout<i class="fa fa-out"></i></a>
               </li>
+             {% else%}
+             <li class="nav-item">
+              <a class="nav-link" href="/signin">Login<i class="fa fa-out"></i></a>
+            </li>
             {% endif%}
             </ul>
           </div>

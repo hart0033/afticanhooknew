@@ -103,31 +103,29 @@
 
   /* Styles for mobile devices */
 @media only screen and (max-width: 600px) {
-    /* Adjust styles for the modal */
-    .w3-modal-content {
+  /* Adjust styles for the modal */
+  .w3-modal-content {
       width: 80%; /* Adjust width for smaller screens */
+      margin: 10% auto; /* Center the modal vertically */
       padding: 20px; /* Adjust padding */
-    }
-  
-    /* Adjust styles for the button */
-    .nav-item button {
-      padding: 8px 16px; /* Adjust padding */
-      font-size: 14px; /* Adjust font size */
-    }
-  
-    /* Adjust styles for the links within .w3-container */
-    .w3-container a {
-      font-size: 10px; /* Adjust font size */
-    }
-  
-    /* Adjust styles for the close button */
-    .w3-button {
-      font-size: 24px; /* Adjust font size */
-    }
-  
-    /* Adjust styles for the top right element */
-    .w3-display-topright {
-      right: 5px; /* Adjust right position */
-    }
+      height: auto; /* Allow content to dictate height */
   }
-  
+
+  /* Adjust styles for the button */
+  .w3-container a {
+      font-size: 14px; /* Adjust font size */
+      padding: 8px 12px; /* Adjust padding */
+  }
+
+  /* Adjust styles for the close button */
+  .w3-button {
+      font-size: 24px; /* Adjust font size */
+      padding: 8px 12px; /* Adjust padding */
+  }
+
+  /* Adjust styles for the top right element */
+  .w3-display-topright {
+      right: 5px; /* Adjust right position */
+      top: 5px; /* Adjust top position */
+  }
+}

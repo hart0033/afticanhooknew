@@ -75,10 +75,13 @@ def signin(request):
         user = authenticate(username=username, password=pass1)
         
         if user is not None:
-            login(request, user)
-            return render(request, "web/index.html", context)
+            if user.is_active:
+                login(request, user)
+                return render(request, "web/index.html", context)
+            else:
+                messages.error(request, 'Your account is suspended.')
         else:
-            messages.error(request, 'username or password is incorrect')
+            messages.error(request, 'Username or password is incorrect')
             return redirect('signin')
     
     return render (request, 'hookup/login.html')
@@ -230,7 +233,6 @@ def view_videos(request, id):
 
 def myvideo(request, id):       
     video = adsvideos.objects.get(id=id)
-    video.view_count += 1
     video.save()
     return render(request, 'web/myvideo.html', {'video': video})
 
