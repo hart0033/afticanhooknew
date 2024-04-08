@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.auth.forms import SetPasswordForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 
@@ -28,6 +29,18 @@ def home(request):
         ads = postads.objects.filter(suspended=False).order_by('-verification')
     else:
         ads = postads.objects.filter(State__State=s, suspended=False,).order_by('-verification')
+        
+    paginator = Paginator(ads, 10 )  # Show 10 ads per page
+    
+    page_number = request.GET.get('page')
+    try:
+        ads = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page
+        ads = paginator.page(10)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results
+        ads = paginator.page(paginator.num_pages)
     
     sl3 = slide3.objects.first()
     sl2 = slide2.objects.first()
@@ -48,6 +61,19 @@ def videos(request):
     else:
         video = adsvideos.objects.filter(State__State=s, suspended=False,).order_by('-verification') 
     s = State.objects.all()
+    
+    paginator = Paginator(video, 10 )  # Show 10 ads per page
+    
+    page_number = request.GET.get('page')
+    try:
+        video = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page
+        video = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results
+        video = paginator.page(paginator.num_pages)
+        
     context = {
     's' : s,
     'video': video,

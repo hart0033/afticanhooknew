@@ -134,7 +134,7 @@
         <div class="row">
           <div class="col-md-12">
             {% for user_ads in user_ads %}
-          <div class="col-md-4">
+            <div class="col-md-4">
              <div class="product-item">
               {% if user_ads.suspended %}
               <h6 style=" background-color:rgb(248, 55, 55);
@@ -148,7 +148,8 @@
               src="{{user_ads.main.url}}" class="img-fluid img-thumbnail"/>
               <div class="top-right">{% if user_ads.verification %}
               <p style="font-size:40px;color:rgb(0, 145, 255)">{{user_ads.verification.True}}<i class="fa fa-check-circle"></i></i></p>
-               {% endif%}</div>
+               {% endif%}
+              </div>
               <div class="down-content">
                 <a href="#"><h4>Name : {{user_ads.name}}</h4></a>
                 <h6><p>Shot Time : &#8358 {{user_ads.shot_time}}</p></h6>
@@ -165,7 +166,7 @@
                   {% if user_ads.verification %}
                   {%else%}{% if user_ads.verification %}
                   <p>{{user_ads.verification.True}}<i class="fa fa-certificate fa-2x" style=" color:#63E6BE;" aria-hidden="true"></i></p>
-                 {% endif%}
+                  {% endif%}
                   <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This Post Is Not Verified Click On The Link To Verify Your Post <a href="{% url "verify_post" user_ads.id %}">Verify Post</a></p>
                   {% endif%}
                 </ul>
