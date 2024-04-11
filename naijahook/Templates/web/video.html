@@ -267,33 +267,35 @@
     </div>
 </section>
 <!-- End Products Section -->
-
-    
+<hr>
+<div class="pagination-container">
+  <span class="page-info">Page {{video.number}} of {{video.paginator.num_pages}}</span>
+  <div class="pagination-buttons">
+      {% if video.has_previous %}
+          <a class="prev-button" href="?page={{ video.previous_page_number }}">Previous</a>
+      {% endif %}
+      
+      {% for num in video.paginator.page_range %}
+          {% if num == video.number %}
+              <strong>{{ num }}</strong>
+          {% else %}
+              <a href="?page={{ num }}">{{ num }}</a>
+          {% endif %}
+      {% endfor %}
+      
+      {% if video.has_next %}
+          <a class="next-button" href="?page={{ video.next_page_number }}">Next</a>
+      {% endif %}
+  </div>
+</div>
 
 
   <footer>
-    <div class="pagination-container">
-      <span class="page-info">Page {{ads.number}} of {{ads.paginator.num_pages}}</span>
-      <div class="pagination-buttons">
-          {% if ads.has_previous %}
-              <a class="prev-button" href="?page={{ ads.previous_page_number }}">Previous</a>
-          {% endif %}
-          
-          {% for num in ads.paginator.page_range %}
-              {% if num == ads.number %}
-                  <strong>{{ num }}</strong>
-              {% else %}
-                  <a href="?page={{ num }}">{{ num }}</a>
-              {% endif %}
-          {% endfor %}
-          
-          {% if ads.has_next %}
-              <a class="next-button" href="?page={{ ads.next_page_number }}">Next</a>
-          {% endif %}
-      </div>
-  </div>
+
   
   </footer>
+
+
 
 
     <!-- Bootstrap core JavaScript -->

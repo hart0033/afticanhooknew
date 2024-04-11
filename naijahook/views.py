@@ -37,7 +37,7 @@ def home(request):
         ads = paginator.page(page_number)
     except PageNotAnInteger:
         # If page is not an integer, deliver first page
-        ads = paginator.page(10)
+        ads = paginator.page(1)
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results
         ads = paginator.page(paginator.num_pages)
@@ -205,8 +205,37 @@ def signup(request):
 def useraccount(request):
     user = request.user
     user_ads = postads.objects.filter(author=request.user).order_by('-date_post')
+    
+    paginator = Paginator(user_ads, 10 )  # Show 10 ads per page
+    
+    page_number = request.GET.get('page')
+    try:
+        user_ads = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page
+        user_ads = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results
+        user_ads = paginator.page(paginator.num_pages)
+    return render (request, 'web/myaccount.html', {'user_ads':user_ads, 'user':user})
+
+@login_required(login_url="/signin")
+def uservideos(request):
+    user = request.user
     user_video = adsvideos.objects.filter(author=request.user).order_by('-date_post')
-    return render (request, 'web/myaccount.html', {'user_ads':user_ads, 'user':user, 'user_video':user_video})
+    
+    paginator = Paginator(user_video, 10 )  # Show 10 ads per page
+    
+    page_number = request.GET.get('page')
+    try:
+        user_video = paginator.page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page
+        user_video = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results
+        user_video = paginator.page(paginator.num_pages)
+    return render (request, 'web/myvideos.html', {'user':user, 'user_video':user_video})
 
 def signout(request):
     logout(request)
@@ -236,7 +265,7 @@ def postvideo(request,):
          postads.author = request.user
          postads.save()
          messages.success(request, 'Your ads has been posted successfuly')
-         return redirect('useraccount')
+         return redirect('uservideos')
     else:
         form = adsvideos_form()
     return render (request, 'hookup/postvideos.html', {'form':form})

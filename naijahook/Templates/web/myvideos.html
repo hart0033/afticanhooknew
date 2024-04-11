@@ -191,55 +191,56 @@
           <div class="col-md-12">
             <ul class="nav nav-pills nav-justified">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Pictures</a>
+                <a class="nav-link" aria-current="page" href="{%url "useraccount" %}">Pictures</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{%url "uservideos" %}">Videos</a>
+                <a class="nav-link active" href="#">Videos</a>
               </li>
             </ul>
             <br>
           </div>
-            {% for user_ads in user_ads %}
-            <div class="col-md-4">
              <div class="product-item">
-              {% if user_ads.suspended %}
+            </div>
+          {% for user_video in user_video %}
+          <div class="col-md-4">
+             <div class="product-item">
+              {% if user_video.suspended %}
               <h6 style=" background-color:rgb(248, 55, 55);
               color:white; text-align:center;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>SUSPENDED POST!</h6><br/>
-              <p>{{user_ads.suspended.True}} <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>This Post Has Been Suspended Only You Can See This Call Or Email The Admin For More Information</p></h6>
+              <p>{{user_video.suspended.True}} <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>This Post Has Been Suspended Only You Can See This Call Or Email The Admin For More Information</p></h6>
               {% endif%}
-              <img 
-              style="width: 100%;
-              height: 370px;
-               object-fit: cover;"
-              src="{{user_ads.main.url}}" class="img-fluid img-thumbnail"/>
-              <div class="top-right">{% if user_ads.verification %}
-              <p style="font-size:40px;color:rgb(0, 145, 255)">{{user_ads.verification.True}}<i class="fa fa-check-circle"></i></i></p>
-               {% endif%}
-              </div>
+              <video style="width: 100%;
+                height: 370px;
+                object-fit: cover;" src="{{user_video.video.url}}"></video>
+                <div class="top-right">{% if user_video.verification %}
+                  <p style="font-size:40px;color:rgb(0, 145, 255)">{{user_video.verification.True}}<i class="fa fa-check-circle"></i></i></p>
+                   {% endif%}
+                </div>
               <div class="down-content">
-                <a href="#"><h4>Name : {{user_ads.name}}</h4></a>
-                <h6><p>Shot Time : &#8358 {{user_ads.shot_time}}</p></h6>
+                <a href="#"><h4>Name : {{user_video.name}}</h4></a>
+                <h6><p>Shot Time : &#8358 {{user_video.shot_time}}</p></h6>
                 <p style="
                 height: 50px;
                 overflow: hidden;
-                ">Bio : {{user_ads.bio}}</p>
+                ">Bio : {{user_video.bio}}</p>
                 <ul class="stars">
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
                   <li><i class="fa fa-star"></i></li>
-                  {% if user_ads.verification %}
-                  {%else%}{% if user_ads.verification %}
-                  <p>{{user_ads.verification.True}}<i class="fa fa-certificate fa-2x" style=" color:#63E6BE;" aria-hidden="true"></i></p>
-                  {% endif%}
-                  <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This Post Is Not Verified Click On The Link To Verify Your Post <a href="{% url "verify_post" user_ads.id %}">Verify Post</a></p>
-                  {% endif%}
                 </ul>
+                {% if user_video.verification %}
+                  {%else%}{% if user_ads.verification %}
+                  <p>{{user_video.verification.True}}<i class="fa fa-certificate fa-2x" style=" color:#63E6BE;" aria-hidden="true"></i></p>
+                  {% endif%}
+                  <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This Post Is Not Verified Click On The Link To Verify Your Post <a href="{% url "verify_video" user_video.id %}">Verify Post</a></p>
+                {% endif%}
                 <div>
-                  <a class="btn btn-primary" href="{% url 'userview_post' user_ads.id %}">View</a>
-                  <a class="btn btn-success" href="{% url 'edit_postads' user_ads.id %}">Edit Post</a>
-                  <a class="btn btn-danger" href="{% url 'delete_post' user_ads.id %}">Delete Post</a>
+                  <a class="btn btn-primary" href="{% url 'myvideo' user_video.id %}">View</a>
+                  <a class="btn btn-success" href="{% url 'edit_video' user_video.id %}">Edit Video</a>
+                  <a class="btn btn-danger" href="{% url 'delete_video' user_video.id %}">Delete Post</a>
+                  
                 </div>
              </div>
             </div>
@@ -252,14 +253,14 @@
     
     <hr>
     <div class="pagination-container">
-      <span class="page-info">Page {{uer_ads.number}} of {{user_ads.paginator.num_pages}}</span>
+      <span class="page-info">Page {{user_video.number}} of {{user_video.paginator.num_pages}}</span>
       <div class="pagination-buttons">
-          {% if user_ads.has_previous %}
-              <a class="prev-button" href="?page={{ uer_ads.previous_page_number }}">Previous</a>
+          {% if user_video.has_previous %}
+              <a class="prev-button" href="?page={{ uer_video.previous_page_number }}">Previous</a>
           {% endif %}
           
-          {% for num in user_ads.paginator.page_range %}
-              {% if num == user_ads.number %}
+          {% for num in user_video.paginator.page_range %}
+              {% if num == user_video.number %}
                   <strong>{{ num }}</strong>
               {% else %}
                   <a href="?page={{ num }}">{{ num }}</a>
@@ -267,7 +268,7 @@
           {% endfor %}
           
           {% if user_ads.has_next %}
-              <a class="next-button" href="?page={{ user_ads.next_page_number }}">Next</a>
+              <a class="next-button" href="?page={{ user_video.next_page_number }}">Next</a>
           {% endif %}
       </div>
     </div>
