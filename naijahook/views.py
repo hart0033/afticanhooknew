@@ -285,7 +285,7 @@ def view_videos(request, id):
         form = videoreview_form()
     return render(request, 'web/view_videos.html', {'video': video, 'form':form})
 
-
+@login_required(login_url="/signin")
 def myvideo(request, id):       
     video = adsvideos.objects.get(id=id)
     video.save()
@@ -430,7 +430,7 @@ def verify_video(request, id):
             verify.Post = user_video
             verify.save()
             messages.success(request, 'Post verification submitted successfully it takes 24 hours for your videos to be verified.')
-            return redirect('view_video', id=id)
+            return redirect('myvideo', id=id)
         else:
             messages.error(request, 'Invalid form submission.')
             return redirect('verify_video', id=id)
