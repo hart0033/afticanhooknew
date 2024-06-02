@@ -6,6 +6,7 @@ https://templatemo.com/tm-546-sixteen-clothing
 
 */
 body {
+	
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
@@ -33,6 +34,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 ul.social-icons li {
+	
 	display: inline-block;
 	margin-right: 3px;
 }
