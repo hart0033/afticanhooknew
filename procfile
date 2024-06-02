@@ -1,1 +1,1 @@
-web: gunicorn naijahook.wsgi
+web: gunicorn naijahook.wsgi --log-file -
