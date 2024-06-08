@@ -1,1 +1,1 @@
-web: gunicorn HARTLORD.wsgi --log-file -
+web: gunicorn hartlord.wsgi --log-file -
