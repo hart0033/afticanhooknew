@@ -6,24 +6,14 @@
         "providers": ["python"],
         "phases": {
           "setup": {
-            "nixPkgs": ["python39", "nodejs"],
-            "commands": [
-              "pip install -r requirements.txt",
-              "npm install"
-            ]
+            "nixPkgs": ["python39", "nodejs"]
           }
         }
-      }
+      },
+      "buildCommand": "npm ci"
     },
     "deploy": {
-      "runtime": "UNSPECIFIED",
-      "numReplicas": 1,
-      "startCommand": "python3 manage.py runserver 0.0.0.0:8000",
-      "healthCheckPath": "/health",
-      "healthCheckInterval": 60,
-      "healthCheckTimeout": 10,
-      "healthCheckRetries": 3,
-      "sleepApplication": false,
+      "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn webapp.wsgi:application",
       "restartPolicyType": "ON_FAILURE",
       "restartPolicyMaxRetries": 10
     }
