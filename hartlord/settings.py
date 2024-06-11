@@ -32,7 +32,7 @@ EMAIL_DEBUG = True
 SECRET_KEY = 'django-insecure-4x0l&gab3om*mcv$iwnwc0xw465qa-!)#l^81*$vk(q6b+f82f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
