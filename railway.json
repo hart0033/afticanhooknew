@@ -18,7 +18,7 @@
     "deploy": {
       "runtime": "UNSPECIFIED",
       "numReplicas": 1,
-      "startCommand": "python3 manage.py runserver --noreload",
+      "startCommand": "python manage.py runserver --noreload",
       "healthCheckPath": "/health",
       "healthCheckInterval": 60,
       "healthCheckTimeout": 10,
