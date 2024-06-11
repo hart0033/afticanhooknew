@@ -1,7 +1,15 @@
 {
     "$schema": "https://railway.app/railway.schema.json",
     "build": {
-      "builder": "NIXPACKS"
+      "builder": "NIXPACKS",
+      "nixpacksPlan": {
+        "providers": ["python"],
+        "phases": {
+            "setup": {
+                "nixPkgs": ["...", "nodejs"]
+            }
+        }
+      }
     },
     "deploy": {
       "runtime": "UNSPECIFIED",
