@@ -5,18 +5,27 @@
       "nixpacksPlan": {
         "providers": ["python"],
         "phases": {
-            "setup": {
-                "nixPkgs": ["...", "nodejs"]
-            }
+          "setup": {
+            "nixPkgs": ["python39", "nodejs"],
+            "commands": [
+              "pip install -r requirements.txt",
+              "npm install"
+            ]
+          }
         }
       }
     },
     "deploy": {
       "runtime": "UNSPECIFIED",
       "numReplicas": 1,
-      "startCommand": "py manage.py runserver",
+      "startCommand": "python3 manage.py runserver 0.0.0.0:8000",
+      "healthCheckPath": "/health",
+      "healthCheckInterval": 60,
+      "healthCheckTimeout": 10,
+      "healthCheckRetries": 3,
       "sleepApplication": false,
       "restartPolicyType": "ON_FAILURE",
       "restartPolicyMaxRetries": 10
     }
   }
+  
