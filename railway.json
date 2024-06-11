@@ -1,28 +1,20 @@
 {
-  "$schema": "https://railway.app/railway.schema.json",
-  "build": {
-    "builder": "NIXPACKS",
-    "buildCommand": "npm ci",
-    "nixpacksPlan": {
-      "phases": {
-        "setup": {
-          "nixPkgs": [
-            "...",
-            "nodejs"
-          ]
-        }
+    "$schema": "https://railway.app/railway.schema.json",
+    "build": {
+      "builder": "NIXPACKS",
+      "nixpacksPlan": {
+          "providers": ["python"],
+          "phases": {
+              "setup": {
+                  "nixPkgs": ["...", "nodejs"]
+              }
+          }
       },
-      "providers": [
-        "python"
-      ]
+      "buildCommand": "npm ci"
+    },
+    "deploy": {
+      "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn webapp.wsgi",
+      "restartPolicyType": "ON_FAILURE",
+      "restartPolicyMaxRetries": 10
     }
-  },
-  "deploy": {
-    "runtime": "UNSPECIFIED",
-    "numReplicas": 1,
-    "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn webapp.wsgi",
-    "sleepApplication": false,
-    "restartPolicyType": "ON_FAILURE",
-    "restartPolicyMaxRetries": 10
   }
-}
