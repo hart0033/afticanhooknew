@@ -41,3 +41,10 @@ urlpatterns = [
     path('password_reset/confirm/<uidb64>/<token>/', auth_view.PasswordResetConfirmView.as_view(template_name="hookup/password_reset_confirm.html"), name='password_reset_confirm'),
     path('password_reset_complete', auth_view.PasswordResetCompleteView.as_view(template_name="hookup/password_reset_complete.html"), name='password_reset_complete'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+from django.urls import path
+from .views import health_check
+
+urlpatterns = [
+    path('health', health_check),
+]
