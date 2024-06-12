@@ -18,7 +18,7 @@
     "deploy": {
       "runtime": "UNSPECIFIED",
       "numReplicas": 1,
-      "startCommand": "python manage.py runserver --noreload",
+      "startCommand": "python manage.py runserver 0.0.0.0:8000 --noreload",
       "sleepApplication": false,
       "restartPolicyType": "ON_FAILURE",
       "restartPolicyMaxRetries": 10
