@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth import views as auth_view
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('userview_post/<int:id>', views.userview_post, name='userview_post'),
     path('userview_post/<int:id>', views.userview_video, name='userview_post'),

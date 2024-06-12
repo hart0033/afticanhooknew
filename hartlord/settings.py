@@ -13,11 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
-import dj_database_url
-
-DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,8 +23,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'SMTP_Injection'
-EMAIL_HOST_PASSWORD = 'Sodineyeh9$'
-DEFAULT_FROM_EMAIL = 'hartmoo33@gmail.com'
+EMAIL_HOST_PASSWORD = 'Sodineyeh99$'
+DEFAULT_FROM_EMAIL = 'hartm0033@gmail.com'
 SERVER_EMAIL = 'SMTP_Injection'
 EMAIL_DEBUG = True
 # Quick-start development settings - unsuitable for production
