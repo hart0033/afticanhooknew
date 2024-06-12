@@ -1,1 +1,1 @@
-web: gunicorn naijahook.wsgi --log-file -
+web: gunicorn hartlord.wsgi --log-file -
