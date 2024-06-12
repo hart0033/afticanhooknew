@@ -21,12 +21,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 
-# In your Django app's views.py
-from django.http import HttpResponse
-
-def health_check(request):
-    return HttpResponse("OK")
-
 
 def home(request):
     s = request.GET.get('State')
