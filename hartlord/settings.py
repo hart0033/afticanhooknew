@@ -88,6 +88,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hartlord.wsgi.application'
 
 
+CSRF_TRUSTED_ORIGINS = ['https://exciting-charisma-production.up.railway.app']
+
 
 
 
