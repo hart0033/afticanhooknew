@@ -34,7 +34,7 @@ EMAIL_DEBUG = True
 SECRET_KEY = 'django-insecure-4x0l&gab3om*mcv$iwnwc0xw465qa-!)#l^81*$vk(q6b+f82f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -133,16 +133,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-CKEDITOR_UPLOAD_PATH = 'uploads/'
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-MEDIA_URL = '/image/'
-
 STATICFILES_DIRS = [
-    BASE_DIR / 'static'
+    BASE_DIR / 'static',
 ]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Media files (User uploaded content)
+MEDIA_URL = '/image/'
 MEDIA_ROOT = BASE_DIR / 'static/images'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# CKEditor upload path
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

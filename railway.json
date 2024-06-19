@@ -10,6 +10,7 @@
           "buildCommand": [
             "pip install -r requirements.txt",
             "npm install",
+            "python manage.py migrate",
             "python manage.py collectstatic --noinput"
           ]
         }
@@ -19,7 +20,7 @@
   "deploy": {
     "runtime": "UNSPECIFIED",
     "numReplicas": 1,
-    "startCommand": "gunicorn hartlord.wsgi:application --bind 0.0.0.0:8000",
+    "startCommand": "gunicorn hartlord.wsgi:application --bind 0.0.0.0:8000 --log-level debug",
     "sleepApplication": false,
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
