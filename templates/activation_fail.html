@@ -1,0 +1,12 @@
+{% autoescape off %}
+activation failed try again or email us for support
+{% endautoescape %}
+
+<a href="{% url 'edit_post' postads_id=postads.id %}">Edit</a>
+
+
+
+<form action="{% url 'delete_post' post_id=post.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+</form>

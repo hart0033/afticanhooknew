@@ -1,0 +1,350 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href={% static "https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" %}>
+
+    <title>AfricanHook</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
+    <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
+    <link rel="stylesheet" href={% static "css/owl.css" %}>
+    <link rel="stylesheet" href={% static "css/new.css" %}>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+   </head>
+
+  </head>
+  <style>
+    .banner-item-01 {
+      background-image: url("{{ sl.picture.url }}");
+    }
+    .banner-item-02 {
+      background-image: url("{{ sl2.picture.url }}");
+    }
+    .banner-item-03 {
+      background-image: url("{{ sl3.picture.url }}");
+    }
+    .top-right {
+      position: absolute;
+      top: 8px;
+      right: 16px;
+    }
+    /* Style for the pagination container */
+.pagination-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between; /* Align items with space between */
+  align-items: center; /* Align items vertically */
+}
+
+/* Style for the page info */
+.page-info {
+  font-size: 10px;
+}
+
+/* Style for pagination buttons */
+.pagination-buttons {
+  display: flex;
+  flex-wrap: wrap; /* Allow pagination buttons to wrap */
+}
+
+/* Style for previous and next buttons */
+.prev-button, .next-button {
+  display: inline-block;
+  padding: 6px 13px;
+  background-color: #007bff; /* Blue color, you can change it as per your preference */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  margin: 0 5px; /* Add some space between buttons */
+}
+
+/* Hover effect for previous and next buttons */
+.prev-button:hover, .next-button:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
+/* Style for current page number */
+.pagination-buttons strong {
+  padding: 8px 12px;
+  background-color: #ccc; /* Gray background for the current page */
+  color: #333;
+  border-radius: 4px;
+  margin: 0 5px; /* Add some space between buttons */
+}
+
+/* Style for page number links */
+.pagination-buttons a {
+    display: inline-block;
+    padding: 8px 12px;
+    color: black;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+/* Hover effect for page number links */
+.pagination-buttons a:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+}
+
+  </style>
+
+  <body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="{%url "home"%}"><h2>African <em>Hook</em></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href={%url "home"%}>Home<i class="fa fa-home"></i>
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href={%url "videos"%}>Videos
+                </a>
+              </li>
+              <li class="nav-item">
+                <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
+                <div class="w3-container">
+                  
+                  <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content">
+                      <div class="w3-container">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
+                        <a href="{%url "post" %}">
+                          <img src="{% static 'images/picon.webp' %}" alt="">
+                          Post Picture
+                        </a>
+                        <a href="{%url "postvideo" %}">
+                          <img src="{% static 'images/vicon.png' %}" alt="">
+                          Post Video
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="">About Us</a>
+              </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/useraccount">My Account<i class="fa fa-user"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signout">Logout<i class="fa fa-out"></i></a>
+              </li>
+             {% else%}
+             <li class="nav-item">
+              <a class="nav-link" href="/signin">Login<i class="fa fa-out"></i></a>
+            </li>
+            {% endif%}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="banner header-text">
+      <div class="owl-banner owl-carousel">
+        <div class="banner-item-01">
+          <div class="text-content">
+            <h2>{{sl.list}}</h2>
+          </div>
+        </div>
+        <div class="banner-item-02">
+          <div class="text-content">
+            <h2>{{sl2.list}}</h2>
+          </div>
+        </div>
+        <div class="banner-item-03">
+          <div class="text-content">
+            <h2>{{sl3.list}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Banner Ends Here -->
+    <div class="btn-group, ">
+      <button type="button" class="btn btn-danger dropdown-toggle, btn btn-primary btn-lg btn-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        State
+      </button>
+      <div class="dropdown-menu ">
+        <div
+        class='state-flex'> 
+          {% for s in s %}
+          <a class="state-list"
+          style=" 
+           border-radius: 2px;
+           color: black;
+           margin: 7px;
+	         padding: 1px;
+           border: 1px solid rgb(54, 51, 51); 
+        	 " href="{% url 'home'%}?State={{s.State}}" style=" display: flexbox">{{ s.State}} </a>
+          {% endfor%}
+        </div>
+      </div>
+       <a style="
+        margin-top:3px;
+       "
+       class=" btn btn-primary btn-lg btn-block" href="{% url 'home'%}">All Post</a>
+
+    </div>
+    <div class="section-heading, row , ">
+              
+      
+    </div>
+    <div class="latest-products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+          </div>
+        {% for ads in ads %}
+          <div class="col-md-4">
+            <div class="product-item">
+              <img 
+              style="width: 100%;
+               height: 370px;
+               object-fit: cover;"
+              src="{{ads.main.url}}" class="img-fluid img-thumbnail"/>
+              <div class="top-right">{% if ads.verification %}
+                <p style="font-size:40px;color:rgb(0, 145, 255)">{{ads.verification.True}}<i class="fa fa-check-circle"></i></p>
+                 {% endif%}</div>
+              <div class="down-content">
+                <a href="#"><h4>Name : {{ads.name}}</h4></a>
+                <h6><p>Shot Time : &#8358 {{ads.shot_time}}</p></h6>
+                <p><b>State : {{ads.State}}</b></p>
+                <p style="
+                height: 50px;
+                overflow: hidden;
+                ">Bio : {{ads.bio}}</p>
+                <ul class="stars">
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+                <a  class="btn btn-primary btn-lg btn-block" href="{% url 'view_post' ads.id %}" >View</a>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+           <h3 style="color: #232323;
+           font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;"> NO POST FOR THIS STATE YET IT WILL BE ADDED SOON</h3>
+         {% endfor%}
+        </div>
+      
+
+    
+
+    
+
+
+  <footer>
+    
+  </footer>
+    <hr>
+    <div class="pagination-container">
+      <span class="page-info">Page {{ads.number}} of {{ads.paginator.num_pages}}</span>
+      <div class="pagination-buttons">
+          {% if ads.has_previous %}
+              <a class="prev-button" href="?page={{ ads.previous_page_number }}">Previous</a>
+          {% endif %}
+          
+   {% for num in ads.paginator.page_range %}
+    {% if num == ads.number %}
+        <strong>{{ num }}</strong>
+    {% elif num == ads.number|add:"-1" or num == ads.number|add:"-2" or num == ads.number|add:"-3" %}
+        <a href="?page={{ num }}">{{ num }}</a>
+    {% elif num == ads.paginator.page_range|last %}
+        <a href="?page={{ num }}">{{ num }}</a>
+    {% elif num == ads.paginator.page_range|first %}
+        <a href="?page={{ num }}">{{ num }}</a>
+    {% else %}
+        {% if not loop.last %}
+            {% if not loop.first %}
+                ...
+            {% endif %}
+        <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endif %}
+    {% endfor %}
+          
+          {% if ads.has_next %}
+              <a class="next-button" href="?page={{ ads.next_page_number }}">Next</a>
+          {% endif %}
+      </div>
+    </div>
+  
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src={% static "jquery/jquery.min.js"%}></script>
+    <script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
+
+
+    <!-- Additional Scripts -->
+    <script src= {% static "js/custom.js"%}></script>
+    <script src={% static "js/owl.js"%}></script>
+    <script src={%  static "js/slick.js" %}></script>
+    <script src={%  static "js/isotope.js" %}></script>
+    <script src={% static "js/accordions.js" %}></script>
+
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+
+
+  </body>
+
+</html>
