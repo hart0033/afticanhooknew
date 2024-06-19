@@ -25,8 +25,5 @@
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   },
-  "envs": {
-    "DJANGO_SECRET_KEY": "@django_secret_key",
-    "DJANGO_DEBUG": "False"
-  }
+  
 }
