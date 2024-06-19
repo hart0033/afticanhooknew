@@ -9,6 +9,7 @@
           "nixPkgs": ["python39", "nodejs"],
           "buildCommand": [
             "pip install -r requirements.txt",
+            "npm install",
             "python manage.py migrate",
             "python manage.py collectstatic --noinput"
           ]
@@ -17,21 +18,15 @@
     }
   },
   "deploy": {
-    "runtime": "python39",
-    "env": {
-      "DJANGO_SECRET_KEY": {
-        "required": true,
-        "description": "Secret key for Django application"
-      },
-      "DJANGO_DEBUG": {
-        "required": true,
-        "description": "Debug mode for Django application (True/False)"
-      }
-    },
-    "web": "gunicorn hartlord.wsgi:application --workers 4 --bind 0.0.0.0:$PORT",
-    "envs": {
-      "DJANGO_SECRET_KEY": "@django_secret_key",
-      "DJANGO_DEBUG": "@django_debug"
-    }
+    "runtime": "UNSPECIFIED",
+    "numReplicas": 1,
+    "startCommand": "gunicorn hartlord.wsgi:application --log-level debug",
+    "sleepApplication": false,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  },
+  "envs": {
+    "DJANGO_SECRET_KEY": "@django_secret_key",
+    "DJANGO_DEBUG": "False"
   }
 }
