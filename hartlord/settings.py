@@ -92,7 +92,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hartlord.wsgi.application'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://exciting-charisma-production.up.railway.app','https://africanhook.com']
+CSRF_TRUSTED_ORIGINS = ['https://exciting-charisma-production.up.railway.app','https://africanhook.com','https://www.africanhook.com']
 
 
 
@@ -154,8 +154,11 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files settings
-MEDIA_URL = '/image/'
-MEDIA_ROOT = BASE_DIR / 'static/images'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Ensure BASE_DIR is defined correctly
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # CKEditor upload path
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 
