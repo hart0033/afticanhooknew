@@ -80,19 +80,6 @@ def videos(request):
     return render (request, 'web/video.html' , context,)
 
 def signin(request):
-    sl3 = slide3.objects.first()
-    sl2 = slide2.objects.first()
-    sl = slide.objects.first()
-    s = State.objects.all()
-    ads = postads.objects.all().order_by('-date_post')
-    context = {
-    'sl3' : sl3,
-    'sl2' : sl2,
-    'sl' : sl,
-    's' : s,
-    'ads': ads,
-    }
-
     if request.method =="POST":
         username = request.POST['username']
         pass1 = request.POST["pass1"]
@@ -102,7 +89,7 @@ def signin(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, "web/index.html", context)
+                return redirect("home")
             else:
                 messages.error(request, 'Your account is suspended.')
         else:
@@ -110,50 +97,6 @@ def signin(request):
             return redirect('signin')
     
     return render (request, 'hookup/login.html')
-
-def signup_client(request):
-    
-    if request.method =="POST":
-        username = request.POST['username']
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        email = request.POST['email']
-        pass1 = request.POST['pass1']
-        pass2 = request.POST['pass2']
-        
-        if User.objects.filter(username=username):
-            messages.error(request, 'USERNAME HAS BEEN USED PLEASE CREATE A NEW ONE')
-            return redirect('signup')
-            
-        if User.objects.filter(email=email):
-            messages.error(request, 'YOU CANT USER THIS EMAIL AGAIN IT HAS BEEN USED BEFORE')
-            return redirect('signup')
-        
-        if not username.isalnum():
-            messages.error(request, 'USERNAME MOST BE NUMBER AND LETTLERS ONLY') 
-            return redirect('signup')
-        if pass1 == pass2:
-            
-          client = User.objects.create_user(username, email, pass1)
-          User.is_client = True
-          client.first_name = fname
-          client.last_name = lname
-          client.is_active = True
-          client.save()
-          
-          subject = "WELCOME TO NIAJAHOOKUP "
-          message = "HELLO " + client.first_name + '!!/n'+ "YOUR ACCOUNT WAS SUCCESSFULLY CREATED '!!/n' "
-          from_email = settings.EMAIL_HOST_USER
-          to_list = {client.email}
-          send_mail(subject, message, from_email, to_list, fail_silently=True)
-          
-          return redirect('signin')
-      
-      
-        else:
-          messages.error(request, "PASSWORD DON'T MATCH")
-          return redirect('signup')
-    return render (request, 'hookup/signup2.html')
 
 
 def signup(request):

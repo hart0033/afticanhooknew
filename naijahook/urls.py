@@ -27,7 +27,6 @@ urlpatterns = [
     path('useraccount/', views.useraccount, name='useraccount'),
     path('uservideos/', views.uservideos, name='uservideos'),
     path('signup/', views.signup, name='signup'),
-    path('signup_client/', views.signup_client, name='signup_client'),
     path('post/', views.post, name='post'),
     path('postvideo/', views.postvideo, name='postvideo'),
     path('signout/', views.signout, name='sigout'),
@@ -41,4 +40,6 @@ urlpatterns = [
     path('password_reset_sent', auth_view.PasswordResetDoneView.as_view(template_name="hookup/password_reset_done.html"), name='password_reset_done'),
     path('password_reset/confirm/<uidb64>/<token>/', auth_view.PasswordResetConfirmView.as_view(template_name="hookup/password_reset_confirm.html"), name='password_reset_confirm'),
     path('password_reset_complete', auth_view.PasswordResetCompleteView.as_view(template_name="hookup/password_reset_complete.html"), name='password_reset_complete'),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
