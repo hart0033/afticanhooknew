@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.humanize.templatetags import humanize
+from cloudinary.models import CloudinaryField
 
 
 
@@ -33,7 +34,7 @@ class postads(models.Model):
     full_night = models.DecimalField(max_digits=10, decimal_places=2)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True,)
     view_count = models.PositiveIntegerField(default=0)
-    video = models.FileField(blank=True, null=True, upload_to='videos/')
+    video = CloudinaryField('video', resource_type='video', blank=True, null=True)
     service = models.ManyToManyField(Service)
     suspended = models.BooleanField(default=False)
     verification = models.BooleanField(default=False)
@@ -54,7 +55,7 @@ class adsvideos(models.Model):
     number = PhoneNumberField(blank=True, null=True )
     whatsapp = PhoneNumberField(blank=True, null=True )
     telegram = PhoneNumberField(blank=True, null=True )
-    video = models.FileField(blank=True, null=True, upload_to='videos/')
+    video = CloudinaryField('video', resource_type='video', blank=True, null=True)
     bio = models.TextField(max_length=3000)
     State = models.ForeignKey(State, on_delete=models.CASCADE, blank=True, null=True)
     date_post = models.DateTimeField(auto_now=True)
