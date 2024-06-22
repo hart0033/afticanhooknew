@@ -315,7 +315,6 @@ def delete_post(request, id):
 
     if request.method == 'POST':
         user_ads.delete()
-        messages.success(request, 'YOUR POST HAS BEEN DELETED. ')
         return redirect('useraccount')
 
     return render(request, 'hookup/delete_post.html', {'user_ads': user_ads})
@@ -324,7 +323,6 @@ def delete_video(request, id):
     user_video = get_object_or_404(adsvideos, id=id)
     if request.method == 'POST':
         user_video.delete()
-        messages.success(request, 'YOUR POST HAS BEEN DELETED. ')
         return redirect('useraccount')
 
     return render(request, 'hookup/delete_video.html', {'user_video': user_video})
