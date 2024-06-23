@@ -100,8 +100,7 @@ def signin(request):
 
 
 def signup(request):
-    
-    if request.method =="POST":
+    if request.method == "POST":
         username = request.POST['username']
         fname = request.POST['fname']
         lname = request.POST['lname']
@@ -109,39 +108,54 @@ def signup(request):
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
         
-        if User.objects.filter(username=username):
-            messages.error(request, 'USERNAME HAS BEEN USED PLEASE CREATE A NEW ONE')
-            return redirect('signup')
-            
-        if User.objects.filter(email=email):
-            messages.error(request, 'YOU CANT USER THIS EMAIL AGAIN IT HAS BEEN USED BEFORE')
-            return redirect('signup')
+        # Prepare the initial context with form data
+        context = {
+            'username': username,
+            'fname': fname,
+            'lname': lname,
+            'email': email,
+            'pass1': pass1,
+            'pass2': pass2,
+        }
         
-        if not username.isalnum():
-            messages.error(request, 'USERNAME MOST BE NUMBER AND LETTLERS ONLY') 
-            return redirect('signup')
-        if pass1 == pass2:
+        # Check if username already exists
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'USERNAME HAS BEEN USED PLEASE CREATE A NEW ONE')
+            return render(request, 'hookup/signup.html', context)
             
-          myuser = User.objects.create_user(username, email, pass1)
-          User.is_myuser = True
-          myuser.first_name = fname
-          myuser.last_name = lname
-          myuser.is_active = True
-          myuser.save()
+        # Check if email already exists
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'YOU CAN\'T USE THIS EMAIL AGAIN IT HAS BEEN USED BEFORE')
+            return render(request, 'hookup/signup.html', context)
+        
+        # Check if username is alphanumeric
+        if not username.isalnum():
+            messages.error(request, 'USERNAME MUST BE NUMBER AND LETTERS ONLY') 
+            return render(request, 'hookup/signup.html', context)
+        
+        # Check if passwords match
+        if pass1 != pass2:
+            messages.error(request, "PASSWORDS DON'T MATCH")
+            return render(request, 'hookup/signup.html', context)
+        
+        # Create user if all checks pass
+        myuser = User.objects.create_user(username, email, pass1)
+        myuser.first_name = fname
+        myuser.last_name = lname
+        myuser.is_active = True
+        myuser.save()
           
-          subject = "WELCOME TO NIAJAHOOKUP "
-          message = "HELLO " + myuser.first_name + '!!/n'+ "YOUR ACCOUNT WAS SUCCESSFULLY CREATED '!!/n' "
-          from_email = settings.EMAIL_HOST_USER
-          to_list = {myuser.email}
-          send_mail(subject, message, from_email, to_list, fail_silently=True)
+        # Send welcome email
+        subject = "WELCOME TO AFRICANHOOKUP.COM"
+        message = f"HELLO {myuser.first_name}!!\nYOUR ACCOUNT WAS SUCCESSFULLY CREATED!!"
+        from_email = settings.EMAIL_HOST_USER
+        to_list = [myuser.email]  # Use a list instead of a set for email recipients
+        send_mail(subject, message, from_email, to_list, fail_silently=True)
           
-          return redirect('signin')
+        return redirect('signin')
       
-      
-        else:
-          messages.error(request, "PASSWORD DON'T MATCH")
-          return redirect('signup')
-    return render (request, 'hookup/signup.html')
+    return render(request, 'hookup/signup.html')
+
 
 @login_required(login_url="/signin")
 def useraccount(request):
