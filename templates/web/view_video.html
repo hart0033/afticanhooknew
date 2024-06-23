@@ -1,0 +1,360 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href={% static "https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" %}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>{{ads.name}}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
+    <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
+    <link rel="stylesheet" href={% static "css/owl.css" %}>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+   </head>
+
+  </head>
+  <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+  
+      .slider-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+        overflow: hidden;
+      }
+  
+      .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+  
+      .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+      }
+  
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+  
+      .prev, .next {
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        background-color: #333;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+      }
+  
+      .prev:hover, .next:hover {
+        opacity: 1;
+      }
+  
+      .prev {
+        left: 10px;
+      }
+  
+      .next {
+        right: 10px;
+      }
+      .tabs {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+/* tab*/
+    .tabs {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;; /* Black background color for tabs */
+    }
+
+  .tab {
+      cursor: pointer;
+      padding: 8px 12px;
+      margin-right: 8px; /* Darker background color for tabs */
+      color: #181717; /* White text color for tabs */
+      border: 1px solid #ccc;
+      border-radius: 5px 5px 0 0;
+    }
+
+  .tab-content {
+      color: white;
+      display: none;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 0 0 5px 5px;
+      background-color: #555;
+    }
+
+  .tab-content.active {
+    color: white;
+    display: block;
+    background-color: #555;
+  }
+  .tab.active {
+    color: white;
+    display: block;
+    background-color: #555;
+  }
+  label{
+    color: white;
+  }
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+
+  .gallery-item {
+    flex: 1 1 calc(33.33% - 10px);
+    max-width: calc(33.33% - 10px);
+    overflow: hidden;
+    position: relative;
+    border-radius: 3px white solid;
+  }
+
+  .gallery-item img {
+    width: 110%;
+    height: 200px;
+    display: block;
+  }
+  
+    </style>
+
+  <body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>  
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <header class="">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href=""><h2>Sixteen <em>Clothing</em></h2></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href={%url "home"%}>Home<i class="fa fa-home"></i>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="/post">Post Ads<i class="fa fa-plus-circle"></i></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="">About Us</a>
+              </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/useraccount">My Account<i class="fa fa-user"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signout">Logout<i class="fa fa-out"></i></a>
+              </li>
+             {% else%}
+             <li class="nav-item">
+              <a class="nav-link" href="/signin">Login<i class="fa fa-out"></i></a>
+            </li>
+            {% endif%}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <br>
+
+
+    <!-- Page Content -->
+
+
+    <div class="best-features about-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+          </div>
+          <div class="col-md-6">
+            <h6 style="font-size: xx-small;">Username : {{ads.author}}</h6>
+                <video height="500px" width="500px" controls src="{{ ads.video.url }}" type="video/mp4"></video>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <ul class="tabs">
+                <li class="tab" onclick="showTab('tab1')">About</li>
+                <li class="tab" onclick="showTab('tab4')">Reviews</li>
+            </ul>
+            <div id="tab1" class="tab-content active">
+              <p><h4 style="color: white;">Name : {{ads.name}}</h4></p>
+              <p style="color: white;"><b>State : {{ads.State}}</b></p>
+              <a style="color: white;" href="tel:{{ads.number}}"><p style="color: white;"><b><i  class="fa fa-phone"></i> : {{ads.number}}</b></p></a>
+              <a style="color: white;" href="mailto:{{ads.email}}"><p style="color: white;"><b><i  class="fa fa-envelope"></i> : {{ads.email}}</b></p></a>
+              <p style="color: white;"><b>Shot Time : &#8358; {{ads.shot_time}}</b></p>
+              <p style="color: white;"><b>Full Night : &#8358; {{ads.full_night}}</b></p>
+              <p style="color: white;"><b>Bio : {{ads.bio}}</b></p>
+              <ul class="social-icons">
+                {% if not ads.whatsapp%}
+                {% else%}
+                  <li ><a style="background-color: #25D366; color:white;" href="https://wa.me/{{ads.whatsapp}}"><i  class="fa fa-whatsapp"></i></a></li>
+                {%endif%}
+
+                {% if not ads.telegram %}
+                {% else%}
+                  <li ><a style="background-color: #0088cc; color:white;" href="https://t.me/{{ads.telegram}}"><i  class="fa fa-telegram"></i></a></li>
+                {%endif%}
+              </ul>
+          </div>
+          <div id="tab4" class="tab-content">
+            <div>
+              <h3>Reviews....</h3>
+              {% if not ads.reviews.all %}
+                <p style="color: white;"> NO REVIEWS ..... </p>
+              {% else %}
+                {% for review in ads.reviews.all %}
+                  <strong
+                  style="text-transform: capitalize; "
+                  >{{review.name}} - </strong> <small>{{review.date_post}} </small>
+                  <p style="color: white;">{{review.body}}<br/></p>
+                {%endfor%}
+              {%endif%}  
+            </div>
+            <br>
+            <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+               {{form.as_p}}
+                <button class="btn btn-primary btn-lg btn-block"
+                style="
+                 padding: 3px;
+                 max-width: 90px;
+                  "
+          
+                
+                type="submit">Send</button>
+            </form>
+          </div>
+        </div> 
+          <hr>
+          <p>Total Post Viewed: <i  class="fa fa-eye"></i> {{ ads.view_count }}</p>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  
+
+
+    
+    
+
+
+
+    
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+           <div class="inner-content">
+             <p>Copyright &copy; 2024 M_HART., Ltd.
+             
+            - Design: <a rel="nofollow noopener" href="" target="_blank">Mhart</a></p>
+           </div>
+         </div>
+       </div>
+      </div>
+   </footer>
+ 
+ 
+     <!-- Bootstrap core JavaScript -->
+     <script src={% static "jquery/jquery.min.js"%}></script>
+     <script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
+ 
+ 
+     <!-- Additional Scripts -->
+     <script src= {% static "js/custom.js"%}></script>
+     <script src={% static "js/owl.js"%}></script>
+     <script src={%  static "js/slick.js" %}></script>
+     <script src={%  static "js/isotope.js" %}></script>
+     <script src={% static "js/accordions.js" %}></script>
+     <script src={% static "js/slidess.js" %}></script>
+     <script>
+      function showTab(tabId) {
+          // Hide all tab contents
+          var tabContents = document.querySelectorAll('.tab-content');
+          tabContents.forEach(function(content) {
+              content.classList.remove('active');
+          });
+
+          var tabs = document.querySelectorAll('.tab');
+          tabs.forEach(function(tab) {
+            tab.classList.remove('active');
+        });
+  
+          // Show the selected tab content
+          var selectedTab = document.getElementById(tabId);
+          selectedTab.classList.add('active');
+
+          var clickedTab = document.querySelector('.tab[onclick="showTab(\'' + tabId + '\')"]');
+          clickedTab.classList.add('active');
+    
+      }
+  </script>
+  
+ 
+ 
+     <script language = "text/Javascript">
+
+
+       cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+       function clearField(t){                   //declaring the array outside of the
+       if(! cleared[t.id]){                      // function makes it static and global
+           cleared[t.id] = 1;  // you could use true and false, but that's more typing
+           t.value='';         // with more chance of typos
+           t.style.color='#fff';
+           }
+       }
+     </script>
+ 
+ 
+   </body>
+
+</html>

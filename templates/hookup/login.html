@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href={% static "https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" %}>
+
+    <title>Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
+    <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
+    <link rel="stylesheet" href={% static "css/owl.css" %}>
+    <link rel="stylesheet" href={% static "css/new.css" %}>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+  </head>
+  <header class="">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="{%url "home"%}"><h2>African <em>Hook</em></h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href={%url "home"%}>Home<i class="fa fa-home"></i>
+                <span class="sr-only">(current)</span>
+              </a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link" href={%url "videos"%}>Videos
+              </a>
+            </li>
+            <li class="nav-item">
+              <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
+              <div class="w3-container">
+                
+                <div id="id01" class="w3-modal">
+                  <div class="w3-modal-content">
+                    <div class="w3-container">
+                      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
+                      <a href="{%url "post" %}">
+                        <img src="{% static 'images/picon.webp' %}" alt="">
+                        Post Picture
+                      </a>
+                      <a href="{%url "postvideo" %}">
+                        <img src="{% static 'images/vicon.png' %}" alt="">
+                        Post Video
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="">About Us</a>
+            </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/useraccount">My Account<i class="fa fa-user"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signout">Logout<i class="fa fa-out"></i></a>
+            </li>
+           {% else%}
+           <li class="nav-item active">
+            <a class="nav-link" href="/signin">Login<i class="fa fa-out"></i></a>
+          </li>
+          {% endif%}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <style>
+    .card {
+      width: 80%;
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+      margin-bottom: 15px;
+  }
+  
+  label {
+      display: block;
+      margin-bottom: 5px;
+  }
+  
+  input {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+  }
+  
+  .but {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }
+  .but:hover {
+    background-color: #2104ff; /* Change color on hover */
+}
+  
+  /* Media query for mobile view */
+  @media (max-width: 768px) {
+      .card {
+          width: 90%;
+      }
+  }
+  
+  /* Media query for desktop view */
+  @media (min-width: 769px) {
+      .card {
+          width: 60%;
+      }
+  }
+  </style>
+
+  <body>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <div class="section-heading, row , ">
+              
+      
+    </div>
+
+    <div
+    style="text-align: center;
+    "
+
+    >
+       <p>Login Your Account</p>
+       <div class="card text-center">
+        {% for message in messages %}
+         <div  role="alert">
+         <p style ="
+          background-color: rgb(239, 193, 193);
+          color: red ;" 
+         > <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> {{ message}}</p>
+         </div>
+        {% endfor %}
+            
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="card-body">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="username" class="form-control" name="username" placeholder="UserName">
+          </div>
+          <div class="card-body">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="passwordField" name="pass1" placeholder="Password">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="togglePassword">Show</button>
+          </div>
+          </div>
+          <button class="but" 
+          style="padding-bottom: 10px;"
+          type="submit" class="btn btn-primary">Login</button>
+        </form>  
+       </div>
+       <a href="/password_reset">Forger Password</a>
+       <h3>or</h3>
+       <a href="/signup">Create An Account</a>   
+    </div>
+
+
+  <footer>
+     <div class="container">
+       <div class="row">
+         <div class="col-md-12">
+          <div class="inner-content">
+            <p>Copyright &copy; 2024 Africanhook.com</p>
+          </div>
+        </div>
+      </div>
+     </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src={% static "jquery/jquery.min.js"%}></script>
+    <script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
+
+
+    <!-- Additional Scripts -->
+    <script src= {% static "js/custom.js"%}></script>
+    <script src={% static "js/owl.js"%}></script>
+    <script src={%  static "js/slick.js" %}></script>
+    <script src={%  static "js/isotope.js" %}></script>
+    <script src={% static "js/accordions.js" %}></script>
+
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const passwordField = document.getElementById('passwordField');
+        const togglePassword = document.getElementById('togglePassword');
+      
+        togglePassword.addEventListener('click', function () {
+          const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+          passwordField.setAttribute('type', type);
+          togglePassword.textContent = type === 'password' ? 'Show' : 'Hide';
+        });
+      });
+      </script>
+      
+    
+
+
+  </body>
+
+</html>
