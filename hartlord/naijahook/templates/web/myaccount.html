@@ -189,6 +189,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
+          </div>
+          <div class="col-md-12">
             <ul class="nav nav-pills nav-justified">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Pictures</a>
@@ -224,11 +226,6 @@
                 overflow: hidden;
                 ">Bio : {{user_ads.bio}}</p>
                 <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
                   {% if user_ads.verification %}
                   {%else%}{% if user_ads.verification %}
                   <p>{{user_ads.verification.True}}<i class="fa fa-certificate fa-2x" style=" color:#63E6BE;" aria-hidden="true"></i></p>
