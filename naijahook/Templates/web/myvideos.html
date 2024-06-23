@@ -164,6 +164,9 @@
                 <a class="nav-link" href="/useraccount">My Account<i class="fa fa-user"></i></a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{% url 'edit_profile' %}">Change Password</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="/signout">Logout<i class="fa fa-out"></i></a>
               </li>
              {% else%}
@@ -225,13 +228,6 @@
                 height: 50px;
                 overflow: hidden;
                 ">Bio : {{user_video.bio}}</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
                 {% if user_video.verification %}
                   {%else%}{% if user_ads.verification %}
                   <p>{{user_video.verification.True}}<i class="fa fa-certificate fa-2x" style=" color:#63E6BE;" aria-hidden="true"></i></p>
@@ -247,6 +243,30 @@
              </div>
             </div>
           </div>
+          {% empty %}
+           <h3 style="color: #232323;
+           font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: center;"> Create Your FIrst Post <li class="nav-item">
+              <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
+              <div class="w3-container">
+                
+                <div id="id01" class="w3-modal">
+                  <div class="w3-modal-content">
+                    <div class="w3-container">
+                      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
+                      <a href="{%url "post" %}">
+                        <img src="{% static 'images/picon.webp' %}" alt="">
+                        Post Picture
+                      </a>
+                      <a href="{%url "postvideo" %}">
+                        <img src="{% static 'images/vicon.png' %}" alt="">
+                        Post Video
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li> </h3>
          {% endfor%}
         </div>
       </div>

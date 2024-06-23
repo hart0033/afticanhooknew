@@ -81,8 +81,8 @@ def videos(request):
 
 def signin(request):
     if request.method =="POST":
-        username = request.POST['username']
-        pass1 = request.POST["pass1"]
+        username = request.POST.get('username').lower()
+        pass1 = request.POST.get('pass1')
         
         user = authenticate(username=username, password=pass1)
         
@@ -101,7 +101,7 @@ def signin(request):
 
 def signup(request):
     if request.method == "POST":
-        username = request.POST['username']
+        username = request.POST.get('username').lower()
         fname = request.POST['fname']
         lname = request.POST['lname']
         email = request.POST['email']
@@ -151,8 +151,12 @@ def signup(request):
         from_email = settings.EMAIL_HOST_USER
         to_list = [myuser.email]  # Use a list instead of a set for email recipients
         send_mail(subject, message, from_email, to_list, fail_silently=True)
-          
-        return redirect('signin')
+         
+        user = authenticate(username=username, password=pass1) 
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect("home")
       
     return render(request, 'hookup/signup.html')
 
