@@ -1,190 +1,195 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-
-    
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href={% static "https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" %}>
-
-    <title>Post</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
-
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
-    <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
-    <link rel="stylesheet" href={% static "css/owl.css" %}>
-    <link rel="stylesheet" href={% static "css/new.css" %}>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
-
-  </head>
-  <style>
-    #id_services {
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-  }
-
-  /* Style for each checkbox */
-  #id_services {
-      flex-basis: 20%; /* Each item takes up 20% of the container width */
-      padding: 5px;
-      box-sizing: border-box;
-  }
-  </style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Picture Ads</title>
   
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
-  <body>
+  <!-- Additional CSS -->
+  <style>
+    .preview-container {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .preview {
+      max-width: 100%;
+      max-height: 200px;
+      margin-bottom: 10px;
+    }
+    .progress {
+      height: 20px;
+      margin-bottom: 20px;
+    }
+    .progress-bar {
+      transition: width 0.3s ease-in-out;
+    }
+  </style>
 
-    <header class="">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="{%url "home"%}"><h2>African <em>Hook</em></h2></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href={%url "home"%}>Home<i class="fa fa-home"></i>
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link" href={%url "videos"%}>Videos
-                </a>
-              </li>
-              <li class="nav-item">
-                <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
-                <div class="w3-container">
-                  
-                  <div id="id01" class="w3-modal">
-                    <div class="w3-modal-content">
-                      <div class="w3-container">
-                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
-                        <a href="{%url "post" %}">
-                          <img src="{% static 'images/picon.webp' %}" alt="">
-                          Post Picture
-                        </a>
-                        <a href="{%url "postvideo" %}">
-                          <img src="{% static 'images/vicon.png' %}" alt="">
-                          Post Video
-                        </a>
-                      </div>
-                    </div>
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}"><h2>African <em>Hook</em></h2></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Home <i class="fa fa-home"></i></a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'videos' %}">Videos</a>
+          </li>
+          <li class="nav-item">
+            <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
+            <div class="w3-container">
+              <div id="id01" class="w3-modal">
+                <div class="w3-modal-content">
+                  <div class="w3-container">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
+                    <a href="{% url 'post' %}">
+                      <img src="{% static 'images/picon.webp' %}" alt="">
+                      Post Picture
+                    </a>
+                    <a href="{% url 'postvideo' %}">
+                      <img src="{% static 'images/vicon.png' %}" alt="">
+                      Post Video
+                    </a>
                   </div>
                 </div>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="">About Us</a>
-              </li>
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="/useraccount">My Account<i class="fa fa-user"></i></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/signout">Logout<i class="fa fa-out"></i></a>
-              </li>
-             {% else%}
-             <li class="nav-item">
-              <a class="nav-link" href="/signin">Login<i class="fa fa-out"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About Us</a>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/useraccount">My Account <i class="fa fa-user"></i></a>
             </li>
-            {% endif%}
-            </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="/signout">Logout <i class="fa fa-out"></i></a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/signin">Login <i class="fa fa-out"></i></a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section class="container">
+  <h5>Post Picture Ads</h5>
+  <div class="form-group">
+    <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row">
+        {% for i in 1|2|3|4 %}
+        <div class="col-md-3">
+          <div class="preview-container">
+            <img id="preview{{ i }}" class="preview" src="#" alt="Image {{ i }} Preview">
+            <input type="file" id="id_picture{{ i }}" name="picture{{ i }}" accept="image/*" class="form-control-file">
+            <div class="progress">
+              <div id="progressBar{{ i }}" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
           </div>
         </div>
-      </nav>
-    </header>
-    <br>
-    <br>
-    <br>
+        {% endfor %}
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Post Ads</button>
+    </form>
+  </div>
+</section>
 
-    <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>  
-    <br>
-    <!-- ***** Preloader End ***** -->
-
-    <!-- Header -->
-    <h5>Post Picture Ads</h5>
-     <div class="form-group" 
-     style="
-      padding: 14px;
-     "
-     >
-      <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-         {{form.as_p}}
-         <br>
-          <button class="btn btn-primary btn-lg btn-block"
-          style="
-           padding: 14px;
-           max-width: 600px;
-            "
-          type="submit">Post Ads</button>
-      </form>
-     </div>
-  
-
-
-
-  <footer>
-     <div class="container">
-       <div class="row">
-         <div class="col-md-12">
-          <div class="inner-content">
-            <p>Copyright &copy; 2024 Africanhook.com</p>
-          </div>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="inner-content">
+          <p>Copyright &copy; 2024 Africanhook.com</p>
         </div>
       </div>
-     </div>
-  </footer>
+    </div>
+  </div>
+</footer>
 
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'jquery/jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src={% static "jquery/jquery.min.js"%}></script>
-    <script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const numFiles = 4; // Number of file inputs
+    const previews = [];
+    const progressBars = [];
 
+    // Initialize preview elements and progress bars
+    for (let i = 1; i <= numFiles; i++) {
+      previews[i] = document.getElementById(`preview${i}`);
+      progressBars[i] = document.getElementById(`progressBar${i}`);
 
-    <!-- Additional Scripts -->
-    <script src= {% static "js/custom.js"%}></script>
-    <script src={% static "js/owl.js"%}></script>
-    <script src={%  static "js/slick.js" %}></script>
-    <script src={%  static "js/isotope.js" %}></script>
-    <script src={% static "js/accordions.js" %}></script>
+      const input = document.getElementById(`id_picture${i}`);
+      input.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function() {
+            previews[i].src = reader.result;
+          };
+          reader.readAsDataURL(file);
+        } else {
+          previews[i].src = "#";
+        }
+      });
+    }
 
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(this);
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', this.action, true);
 
-    <script language = "text/Javascript"> 
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
+      xhr.upload.onprogress = function(event) {
+        if (event.lengthComputable) {
+          for (let i = 1; i <= numFiles; i++) {
+            const percentComplete = (event.loaded / event.total) * 100;
+            progressBars[i].style.width = percentComplete + '%';
+            progressBars[i].setAttribute('aria-valuenow', percentComplete);
+            progressBars[i].innerHTML = percentComplete.toFixed(0) + '%';
           }
-      }
-    </script>
+        }
+      };
 
+      xhr.onload = function() {
+        // Handle response
+        if (xhr.status === 200) {
+          console.log('Files uploaded successfully');
+          // Optionally redirect or display success message
+        } else {
+          console.error('Error during upload:', xhr.statusText);
+          // Handle errors
+        }
+      };
 
-  </body>
+      xhr.onerror = function() {
+        console.error('Error during upload:', xhr.statusText);
+        // Handle errors
+      };
 
+      xhr.send(formData);
+    });
+  });
+</script>
+
+</body>
 </html>

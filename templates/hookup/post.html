@@ -45,6 +45,21 @@
       padding: 5px;
       box-sizing: border-box;
   }
+  #preview-container {
+    margin-bottom: 10px;
+  }
+  #preview-container img {
+    max-width: 100%;
+    max-height: 100px;
+    margin-bottom: 5px;
+  }
+  .progress {
+    height: 10px;
+    margin-bottom: 10px;
+  }
+  .progress-bar {
+    transition: width 0.3s ease-in-out;
+  }
   </style>
   
 
@@ -132,10 +147,67 @@
       padding: 14px;
      "
      >
-      <form action="" method="POST" enctype="multipart/form-data">
+      <form id="post" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-         {{form.as_p}}
-         <br>
+        <h5> Name </h5>
+         {{form.name}}
+         <h5> Bio </h5>
+         {{form.bio}}
+         <h5> Email </h5>
+         {{form.email}}
+         <h5> Number </h5>
+         {{form.number}}
+         <h5> Whatsapp </h5>
+         {{form.whatsapp}}
+         <h5> Telegram </h5>
+         {{form.telegram}}
+         <h5> State </h5>
+         {{form.State}}
+         <h5> Shot Time </h5>
+         {{form.shot_time}}
+         <h5> Full Night </h5>
+         {{form.full_night}}
+        <h5> Main </h5>
+         {{form.main}}
+        <div id="preview-container">
+          <img id="mainpreview" src="#" alt="Image Preview">
+        </div>
+        <div class="progress">
+          <div id="mainprogressBar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <h5> Picture1 </h5>
+        {{form.picture1}}
+        <div id="preview-container">
+          <img id="preview1" src="#" alt="Image Preview">
+        </div>
+        <div class="progress">
+          <div id="progressBar1" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <h5> Picture2 </h5>
+        {{form.picture2}}
+        <div id="preview-container">
+          <img id="preview2" src="#" alt="Image Preview">
+        </div>
+        <div class="progress">
+          <div id="progressBar2" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <h5> Picture3 </h5>
+        {{form.picture3}}
+        <div id="preview-container">
+          <img id="preview3" src="#" alt="Image Preview">
+        </div>
+        <div class="progress">
+          <div id="progressBar3" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <h5> Video</h5>
+        {{form.video}}
+        <div id="preview-container">
+          <img id="preview" src="#" alt="Image Preview">
+        </div>
+        <div class="progress">
+          <div id="progressBar" class="progress-bar bg-success" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        {{form.services}}
           <button class="btn btn-primary btn-lg btn-block"
           style="
            padding: 14px;
@@ -183,6 +255,87 @@
           t.style.color='#fff';
           }
       }
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const numFiles = 4; // Number of file inputs
+        const previews = [];
+        const progressBars = [];
+
+        // Initialize main image preview and progress bar
+        const mainPreview = document.getElementById('mainpreview');
+        const mainProgressBar = document.getElementById('mainprogressBar');
+        const mainInput = document.getElementById('id_main');
+
+        mainInput.addEventListener('change', function() {
+          const file = this.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function() {
+              mainPreview.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+          } else {
+            mainPreview.src = "#";
+          }
+        });
+    
+        // Initialize preview elements and progress bars
+        for (let i = 1; i <= numFiles; i++) {
+          previews[i] = document.getElementById(`preview${i}`);
+          progressBars[i] = document.getElementById(`progressBar${i}`);
+    
+          const input = document.getElementById(`id_picture${i}`);
+          input.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onload = function() {
+                previews[i].src = reader.result;
+              };
+              reader.readAsDataURL(file);
+            } else {
+              previews[i].src = "#";
+            }
+          });
+        }
+    
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          const formData = new FormData(this);
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', this.action, true);
+    
+          xhr.upload.onprogress = function(event) {
+            if (event.lengthComputable) {
+              for (let i = 1; i <= numFiles; i++) {
+                const percentComplete = (event.loaded / event.total) * 100;
+                progressBars[i].style.width = percentComplete + '%';
+                progressBars[i].setAttribute('aria-valuenow', percentComplete);
+                progressBars[i].innerHTML = percentComplete.toFixed(0) + '%';
+              }
+            }
+          };
+    
+          xhr.onload = function() {
+            // Handle response
+            if (xhr.status === 200) {
+              console.log('Files uploaded successfully');
+              // Optionally redirect or display success message
+            } else {
+              console.error('Error during upload:', xhr.statusText);
+              // Handle errors
+            }
+          };
+    
+          xhr.onerror = function() {
+            console.error('Error during upload:', xhr.statusText);
+            // Handle errors
+          };
+    
+          xhr.send(formData);
+        });
+      });
     </script>
 
 
