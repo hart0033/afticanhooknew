@@ -264,7 +264,7 @@
               <ul class="tabs">
                 <li class="tab" onclick="showTab('tab1')">About</li>
                 <li class="tab" onclick="showTab('tab2')">Gallery</li>
-                <li class="tab" onclick="showTab('tab3')">Videos</li>
+                
                 <li class="tab" onclick="showTab('tab4')">Reviews</li>
                 <li class="tab" onclick="showTab('tab5')">Services</li>
             </ul>
@@ -305,17 +305,6 @@
               </div>
             </div>
           </div>
-          
-          <div id="tab3" class="tab-content">
-            <div class="">
-              {% if not user_ads.video %}
-              <h3>
-                NO VIDEOS YET
-              </h3> 
-              {%else%}
-                <video width="100px" style="width: 100px;" src="{{ user_ads.video.url }}" type="video/mp4"></video>
-              {%endif%}
-            </div>
           </div>
           <div id="tab4" class="tab-content">
             <div>
@@ -366,9 +355,7 @@
       <div class="row">
         <div class="col-md-12">
          <div class="inner-content">
-           <p>Copyright &copy; 2024 M_HART., Ltd.
-           
-          - Design: <a rel="nofollow noopener" href="" target="_blank">Mhart</a></p>
+           <p>Copyright &copy; 2024 Africanhook.com</p>
          </div>
        </div>
      </div>

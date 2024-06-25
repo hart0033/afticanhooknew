@@ -272,7 +272,6 @@
               <ul class="tabs">
                 <li class="tab" onclick="showTab('tab1')">About</li>
                 <li class="tab" onclick="showTab('tab2')">Gallery</li>
-                <li class="tab" onclick="showTab('tab3')">Vidoes</li>
                 <li class="tab" onclick="showTab('tab4')">Reviews</li>
                 <li class="tab" onclick="showTab('tab5')">Services</li>
             </ul>
@@ -314,23 +313,7 @@
               <!-- Add more gallery items as needed -->
             </div>
           </div>
-          
-          <div id="tab3" class="tab-content">
-            <div class="">
-              {% if not ads.video %}
-              <h3>
-                NO VIDEOS
-              </h3> 
-              {%else%}
-              <div class="gallery">
-                <div class="gallery-item">
-                  <a href="{% url "view_video" ads.id %}"><video preload="metadata" width="100px" style="width: 100px;" src="{{ ads.video.url }}" type="video/mp4"></video></a>
-                </div>
-                <!-- Add more gallery items as needed -->
-              </div>
-              {%endif%}
-            </div>
-          </div>
+        
           <div id="tab4" class="tab-content">
             <div>
               <h3>Reviews....</h3>
