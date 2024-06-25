@@ -34,7 +34,6 @@ class postads(models.Model):
     full_night = models.DecimalField(max_digits=10, decimal_places=2)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True,)
     view_count = models.PositiveIntegerField(default=0)
-    video = CloudinaryField('video', resource_type='video', blank=True, null=True)
     service = models.ManyToManyField(Service)
     suspended = models.BooleanField(default=False)
     verification = models.BooleanField(default=False)

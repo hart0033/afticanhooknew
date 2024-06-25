@@ -18,7 +18,7 @@ class postads_form(forms.ModelForm):
 
     class Meta:
         model = postads
-        fields=( "name", "bio","email","number","whatsapp","telegram","State", "shot_time", "full_night","main","picture1","picture2","picture3","video","services")
+        fields=( "name", "bio","email","number","whatsapp","telegram","State", "shot_time", "full_night","main","picture1","picture2","picture3","services")
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': "form-control",
@@ -62,10 +62,6 @@ class postads_form(forms.ModelForm):
                 'style': 'max-width: 600px;',
                 }),
             'picture3': forms.ClearableFileInput(attrs={
-                'class': "form-control",
-                'style': 'max-width: 600px;',
-                }),
-            'video': forms.ClearableFileInput(attrs={
                 'class': "form-control",
                 'style': 'max-width: 600px;',
                 }),
