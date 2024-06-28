@@ -172,6 +172,12 @@ CLOUDINARY_STORAGE = {
     'API_KEY': '392793589453679',
     'API_SECRET': 'Ul2fXPOkUrNZeh_u4960ZhNkM6w'
 }
+CLOUDINARY = {
+    'CLOUD_NAME': 'dqaj51d1c',
+    'API_KEY': '392793589453679',
+    'API_SECRET': 'Ul2fXPOkUrNZeh_u4960ZhNkM6w'
+}
+
 # CKEditor upload path
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 

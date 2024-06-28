@@ -73,7 +73,10 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="">About Us</a>
+              <a class="nav-link" href={%url "contact"%}>Contact Us
+                  <span class="sr-only">(current)</span>
+                </a>
+
             </li>
           {% if user.is_authenticated %}
             <li class="nav-item">
@@ -176,6 +179,7 @@
             
         <form action="" method="POST">
           {% csrf_token %}
+          <input type="hidden" name="next" value="{{ next|default:'home' }}">
           <div class="card-body">
             <label for="exampleInputEmail1">Email address</label>
             <input type="username" class="form-control" name="username" placeholder="UserName">

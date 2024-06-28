@@ -20,6 +20,18 @@ from django.contrib.auth.forms import SetPasswordForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+from django.conf import settings
+
+# Initialize Cloudinary
+cloudinary.config(
+    cloud_name=settings.CLOUDINARY['CLOUD_NAME'],
+    api_key=settings.CLOUDINARY['API_KEY'],
+    api_secret=settings.CLOUDINARY['API_SECRET']
+)
 
 
 def home(request):
@@ -80,7 +92,7 @@ def videos(request):
     return render (request, 'web/video.html' , context,)
 
 def signin(request):
-    if request.method =="POST":
+    if request.method == "POST":
         username = request.POST.get('username').lower()
         pass1 = request.POST.get('pass1')
         
@@ -89,14 +101,15 @@ def signin(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return redirect("home")
+                next_url = request.POST.get('next', 'home')
+                return redirect(next_url)
             else:
                 messages.error(request, 'Your account is suspended.')
         else:
             messages.error(request, 'Username or password is incorrect')
-            return redirect('signin')
     
-    return render (request, 'hookup/login.html')
+    next_url = request.GET.get('next', 'home')
+    return render(request, 'hookup/login.html', {'next': next_url})
 
 
 def signup(request):
@@ -209,7 +222,6 @@ def post(request,):
          postads = form.save(commit=False)
          postads.author = request.user
          postads.save()
-         messages.success(request, 'Your ads has been posted successfuly')
          return redirect('useraccount')
     else:
         form = postads_form()
@@ -440,6 +452,8 @@ class PasswordResetConfirmView(PasswordResetConfirmView):
         return reverse('password_reset_complete')
 def password_reset_done(request):
     return render (request, 'hookup/password_reset_done.html')
+def contact(request):
+    return render (request, 'web/contact.html')
 
 def activate(request, uidb64, token):
     try:

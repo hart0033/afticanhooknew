@@ -23,6 +23,7 @@ urlpatterns = [
     path('activate/<uidb64>/<token>', views.activate, name='activate'),
     path('', views.home, name='home'),
     path('videos/', views.videos, name='videos'),
+    path('contact/', views.contact, name='contact'),
     path('signin/', views.signin, name='signin'),
     path('useraccount/', views.useraccount, name='useraccount'),
     path('uservideos/', views.uservideos, name='uservideos'),

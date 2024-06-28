@@ -1,32 +1,116 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
   <head>
 
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <meta name="author" content="M_HART.">
+    <link href={% static "https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" %}>
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
 
-    <title>Sixteen Clothing - Contact Page</title>
+    <title>AfricanHook</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!--
+    <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
+    <link rel="shortcut icon" href="{% static 'images/logo.webp' %}" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7109320166994891"
+     crossorigin="anonymous"></script>
 
-TemplateMo 546 Sixteen Clothing
 
-https://templatemo.com/tm-546-sixteen-clothing
-
--->
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
+   <!-- Additional CSS Files -->
+   <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
+   <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
+   <link rel="stylesheet" href={% static "css/owl.css" %}>
+   <link rel="stylesheet" href={% static "css/new.css" %}>
+   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+   <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+   <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+   <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+   <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
 
   </head>
+  <style>
+    .icon-overlay {
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 80px; /* Adjust as needed */
+      z-index: 999; /* Ensure it's above the video */
+    }
+    .top-right {
+      position: absolute;
+      top: 8px;
+      right: 16px;}
+
+    /* Style for the pagination container */
+.pagination-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between; /* Align items with space between */
+  align-items: center; /* Align items vertically */
+}
+
+/* Style for the page info */
+.page-info {
+  font-size: 10px;
+}
+
+/* Style for pagination buttons */
+.pagination-buttons {
+  display: flex;
+  flex-wrap: wrap; /* Allow pagination buttons to wrap */
+}
+
+/* Style for previous and next buttons */
+.prev-button, .next-button {
+  display: inline-block;
+  padding: 6px 13px;
+  background-color: #007bff; /* Blue color, you can change it as per your preference */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  margin: 0 5px; /* Add some space between buttons */
+}
+
+/* Hover effect for previous and next buttons */
+.prev-button:hover, .next-button:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
+/* Style for current page number */
+.pagination-buttons strong {
+  padding: 8px 12px;
+  background-color: #ccc; /* Gray background for the current page */
+  color: #333;
+  border-radius: 4px;
+  margin: 0 5px; /* Add some space between buttons */
+}
+
+/* Style for page number links */
+.pagination-buttons a {
+    display: inline-block;
+    padding: 8px 12px;
+    color: black;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+/* Hover effect for page number links */
+.pagination-buttons a:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+}
+
+  </style>
+  
 
   <body>
 
@@ -41,29 +125,65 @@ https://templatemo.com/tm-546-sixteen-clothing
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    <header class="">
+     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="index.html"><h2>Sixteen <em>Clothing</em></h2></a>
+          <a class="navbar-brand" href=""><h2>African <em>Hook</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home
-                  <span class="sr-only">(current)</span>
+                <a class="nav-link" href={%url "home"%}>Home<i class="fa fa-home"></i>
+                  
                 </a>
               </li> 
-              <li class="nav-item">
-                <a class="nav-link" href="products.html">Our Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
-              </li>
               <li class="nav-item active">
-                <a class="nav-link" href="contact.html">Contact Us</a>
+                <a class="nav-link" href={%url "videos"%}>Videos
+                  <span class="sr-only">(current)</span>
+                </a>
               </li>
+              <li class="nav-item">
+                <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
+                <div class="w3-container">
+                  
+                  <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content">
+                      <div class="w3-container">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
+                        <a href="{%url "post" %}">
+                          <img src="{% static 'images/picon.webp' %}" alt="">
+                          Post Picture
+                        </a>
+                        <a href="{%url "postvideo" %}">
+                          <img src="{% static 'images/vicon.png' %}" alt="">
+                          Post Video
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href={%url "contact"%}>Contact Us
+                  <span class="sr-only">(current)</span>
+                </a>
+
+              </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/useraccount">My Account<i class="fa fa-user"></i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/signout">Logout<i class="fa fa-out"></i></a>
+              </li>
+             {% else%}
+             <li class="nav-item">
+              <a class="nav-link" href="/signin">Login<i class="fa fa-out"></i></a>
+            </li>
+            {% endif%}
             </ul>
           </div>
         </div>
@@ -71,13 +191,39 @@ https://templatemo.com/tm-546-sixteen-clothing
     </header>
 
     <!-- Page Content -->
+     
     <div class="page-heading contact-heading header-text">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="text-content">
+              <img 
+                width="20%"
+                src="{% static 'images/newlogo.png' %}" alt="">
               <h4>contact us</h4>
-              <h2>let’s get in touch</h2>
+              <h5>Welcome to AfricanHook.com!</h5>
+              <p> We value your experience and are here to assist you with any questions, concerns, 
+                or inquiries you may have. Our dedicated team is committed to providing you with the best service possible. </p>
+                <br>
+              <h5>How to Reach Us:</h5>
+              <div>
+                <li>Email: support@africanhook.com</li>
+              </div>
+              <br>
+              <h5>Customer Support Hours:</h5>
+              <div>
+                <li>Monday to Friday: 9:00 AM - 6:00 PM</li>
+                <li>Saturday: 10:00 AM - 4:00 PM</li>
+                <li>Sunday: Closed</li>
+              </div>
+              <br>
+              <h4>Privacy and Confidentiality:</h4>
+              <p>Your privacy is of utmost importance to us. 
+                All communications are handled with strict confidentiality. 
+                We ensure that your personal information is protected and will never be shared without your consent.</p>
+                <p>Thank you for choosing AfricanHook.com. We look forward to assisting you!</p>
+                <p>Best regards,</p>
+                <h5>The AfricanHook Team</h5>
             </div>
           </div>
         </div>
@@ -90,24 +236,50 @@ https://templatemo.com/tm-546-sixteen-clothing
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Our Location on Maps</h2>
+              <h2>Frequently Asked Questions (FAQ)</h2>
             </div>
           </div>
-          <div class="col-md-8">
-<!-- How to change your own map point
-	1. Go to Google Maps
-	2. Click on your location point
-	3. Click "Share" and choose "Embed map" tab
-	4. Copy only URL and paste it within the src="" field below
--->
-            <div id="map">
-              <iframe src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="330px" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
-          </div>
+            <h3>General Questions</h3>
           <div class="col-md-4">
             <div class="left-content">
-              <h4>About our office</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisic elit. Sed voluptate nihil eumester consectetur similiqu consectetur.<br><br>Lorem ipsum dolor sit amet, consectetur adipisic elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti.</p>
+              <h4>Q1: What is AfricanHook.com?</h4>
+              <p>A1: AfricanHook.com is a premium escort service platform connecting clients with professional and discreet companions across Africa.</p>
+
+              <h4>Q2: How do I create an account?</h4>
+              <p>A2: To create an account, click on the "Sign Up" button at the top right corner of the homepage and follow the instructions to register.</p>
+
+              <h4>Q3: Is my personal information safe?</h4>
+              <p>A3: Yes, your privacy is our top priority. We use advanced security measures to protect your personal information and ensure confidentiality.</p>
+
+              <h3>Booking and Services</h3>
+              <h4>Q4: How do I book an escort?</h4>
+              <p>A4: Browse through our profiles, select an escort, and click on the "Book Now" button. Follow the prompts to complete your booking.</p>
+
+              <h4>Q5: Can I request a specific escort?</h4>
+              <p>A5: Yes, you can request a specific escort by selecting their profile and clicking on "Book Now." You can also contact our support team for personalized assistance.</p>
+
+              <h4>Q6: What services are offered?</h4>
+              <p>A6: Our escorts offer a range of services tailored to meet your needs. Specific services can be discussed directly with the escort during the booking process.</p>
+
+              <h3>Payments and Fees</h3>
+              <h4>Q7: How do I pay for services?</h4>
+              <p>A7: No Upfront Payments should before meeting any Payment should made only in person </p>
+
+              <h4>Q8: Are there any hidden fees?</h4>
+              <p>A8: No, all fees are clearly stated during the booking process. There are no hidden charges. </p>
+
+              <h4>Q9: What is your cancellation policy?</h4>
+              <p>A9: Cancellations made within 24 hours of the booking may incur a fee. Please refer to our Cancellation Policy page for detailed information.</p>
+
+              <h3>Support and Assistance</h3>
+              <h4>Q10: How can I contact customer support?</h4>
+              <p>A10: You can reach our customer support team via email at support@africanhook.com Our support hours are listed on our Contact Us page. </p>
+
+              <h4>Q11: What if I have a complaint or issue?</h4>
+              <p>A11: We take all complaints seriously. Please contact our support team with any issues, and we will address them promptly and professionally. </p>
+
+              <h4>Q12: How can I provide feedback?</h4>
+              <p>A12: Your feedback is valuable to us. Please send your comments and suggestions to </p>
               <ul class="social-icons">
                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -162,6 +334,7 @@ https://templatemo.com/tm-546-sixteen-clothing
               </form>
             </div>
           </div>
+          <!-- Page Content
           <div class="col-md-4">
             <ul class="accordion">
               <li>
@@ -193,73 +366,34 @@ https://templatemo.com/tm-546-sixteen-clothing
         </div>
       </div>
     </div>
-
-    <div class="happy-clients">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2>Our Happy Customers</h2>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="owl-clients owl-carousel">
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="1">
-              </div>
-              
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="2">
-              </div>
-              
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="3">
-              </div>
-              
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="4">
-              </div>
-              
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="5">
-              </div>
-              
-              <div class="client-item">
-                <img src="assets/images/client-01.png" alt="6">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+     -->
 
     
-    <footer>
+     <footer>
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="inner-content">
-              <p>Copyright &copy; 2020 Sixteen Clothing Co., Ltd.
-            
-            - Design: <a rel="nofollow noopener" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-            </div>
-          </div>
-        </div>
+           <div class="inner-content">
+             <p>Copyright &copy; 2024 Africanhook.com</p>
+           </div>
+         </div>
+       </div>
       </div>
-    </footer>
+   </footer>
 
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src={% static "jquery/jquery.min.js"%}></script>
+    <script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
 
 
     <!-- Additional Scripts -->
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/owl.js"></script>
-    <script src="assets/js/slick.js"></script>
-    <script src="assets/js/isotope.js"></script>
-    <script src="assets/js/accordions.js"></script>
+    <script src= {% static "js/custom.js"%}></script>
+    <script src={% static "js/owl.js"%}></script>
+    <script src={%  static "js/slick.js" %}></script>
+    <script src={%  static "js/isotope.js" %}></script>
+    <script src={% static "js/accordions.js" %}></script>
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 
 
     <script language = "text/Javascript"> 
