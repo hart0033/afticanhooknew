@@ -3,7 +3,9 @@ from . import views
 from django.conf import settings
 from django.contrib.auth import views as auth_view
 from django.conf.urls.static import static
+from django.conf.urls import handler404
 
+handler404 = 'naijahook.views.page_not_found'
 
 urlpatterns = [
     path('userview_post/<int:id>', views.userview_post, name='userview_post'),

@@ -455,6 +455,9 @@ def password_reset_done(request):
 def contact(request):
     return render (request, 'web/contact.html')
 
+def page_not_found(request, exception):
+    return render(request, '404.html', status=404)
+
 def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_encode(uidb64))
