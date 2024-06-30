@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import cloudinary_storage
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -49,7 +48,6 @@ INSTALLED_APPS = [
     'datetime',
     'ckeditor',
     'ckeditor_uploader',
-    'multiupload',
     'naijahook',
     "phonenumber_field",
     'django.contrib.admin',

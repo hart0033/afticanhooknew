@@ -37,9 +37,9 @@ cloudinary.config(
 def home(request):
     s = request.GET.get('State')
     if s == None:
-        ads = postads.objects.filter(suspended=False).order_by('-verification')
+        ads = postads.objects.filter(suspended=False).order_by('-verification', '-date_post')
     else:
-        ads = postads.objects.filter(State__State=s, suspended=False,).order_by('-verification')
+        ads = postads.objects.filter(State__State=s, suspended=False,).order_by('-verification', '-date_post')
         
     paginator = Paginator(ads, 10 )  # Show 10 ads per page
     
@@ -68,9 +68,9 @@ def home(request):
 def videos(request):
     s = request.GET.get('State')
     if s == None:
-        video = adsvideos.objects.filter(suspended=False).order_by('-verification')
+        video = adsvideos.objects.filter(suspended=False).order_by('-verification', '-date_post')
     else:
-        video = adsvideos.objects.filter(State__State=s, suspended=False,).order_by('-verification') 
+        video = adsvideos.objects.filter(State__State=s, suspended=False,).order_by('-verification', '-date_post')
     s = State.objects.all()
     
     paginator = Paginator(video, 10 )  # Show 10 ads per page
