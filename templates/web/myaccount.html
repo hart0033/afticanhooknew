@@ -229,17 +229,13 @@
               </div>
               <div class="down-content">
                 <a href="#"><h4>Name : {{user_ads.name}}</h4></a>
-                <h6><p>Shot Time : &#8358 {{user_ads.shot_time}}</p></h6>
+                <p>State{{user_ads.State}}</p>
+                <p>Shot Time : &#8358 {{user_ads.shot_time}}</p>
                 <p style="
                 height: 50px;
                 overflow: hidden;
                 ">Bio : {{user_ads.bio}}</p>
                 <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
                   {% if user_ads.verification %}
                   {%else%}{% if user_ads.verification %}
                   <p>{{user_ads.verification.True}}<i class="fa fa-certificate fa-2x" style=" color:#63E6BE;" aria-hidden="true"></i></p>
