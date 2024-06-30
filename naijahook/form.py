@@ -68,7 +68,7 @@ class postads_form(forms.ModelForm):
             }
 class adsvideos_form(forms.ModelForm):
     
-    number = PhoneNumberField(region="NG", widget=forms.TextInput(attrs={'class': 'form-control','style': 'width: 350px;','placeholder': 'Phone Number',
+    number = PhoneNumberField(region="NG",required=False, widget=forms.TextInput(attrs={'class': 'form-control','style': 'width: 350px;','placeholder': 'Phone Number',
         
         }))
     whatsapp = PhoneNumberField(region="NG", required=False, widget=forms.TextInput(attrs={'class': 'form-control','style': 'width: 350px;','placeholder': 'Whatsapp Number',
