@@ -18,10 +18,10 @@
 
     <!-- Bootstrap core CSS -->
     <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
+    <link rel="shortcut icon" href="{% static 'images/logo.webp' %}" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7109320166994891"
      crossorigin="anonymous"></script>
 
-    <link rel="shortcut icon" href="{% static 'images/logo.webp' %}" />
 
 
     <!-- Additional CSS Files -->
@@ -43,11 +43,21 @@
 
   </head>
   <style>
+    .icon-overlay {
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 80px; /* Adjust as needed */
+      z-index: 999; /* Ensure it's above the video */
+    }
     .top-right {
       position: absolute;
       top: 8px;
       right: 16px;
     }
+
     .pagination-container {
       margin-top: 15px;
       display: flex;
@@ -161,7 +171,10 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="">About Us</a>
+                <a class="nav-link" href={%url "contact"%}>Contact Us
+                  <span class="sr-only">(current)</span>
+                </a>
+
               </li>
             {% if user.is_authenticated %}
               <li class="nav-item active">
@@ -218,9 +231,14 @@
               color:white; text-align:center;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>SUSPENDED POST!</h6><br/>
               <p>{{user_video.suspended.True}} <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>This Post Has Been Suspended Only You Can See This Call Or Email The Admin For More Information</p></h6>
               {% endif%}
-              <video style="width: 100%;
+              {% if user_video.thumbnail %}
+                <img style="width: 100%;
                 height: 370px;
-                object-fit: cover;" src="{{user_video.video.url}}"></video>
+                object-fit: cover;"src="{{ user_video.thumbnail }}" alt="Thumbnail">
+              {% endif %}
+              <div class="icon-overlay">
+                <a href="{% url 'myvideo' user_video.id %}" ><i class="fa fa-play-circle"></i></a>
+               </div>
                 <div class="top-right">{% if user_video.verification %}
                   <p style="font-size:40px;color:rgb(0, 145, 255)">{{user_video.verification.True}}<i class="fa fa-check-circle"></i></i></p>
                    {% endif%}
@@ -250,7 +268,7 @@
           {% empty %}
            <h3 style="color: #232323;
            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-            text-align: center;"> Create Your FIrst Post <li class="nav-item">
+            text-align: center;"> Create Your FIrst Post <h3 class="nav-item">
               <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
               <div class="w3-container">
                 
@@ -270,7 +288,7 @@
                   </div>
                 </div>
               </div>
-            </li> </h3>
+            </h3></h3>
          {% endfor%}
         </div>
       </div>
@@ -323,7 +341,6 @@
           }
       }
     </script>
-    
 
 
   </body>

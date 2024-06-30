@@ -43,11 +43,21 @@
 
   </head>
   <style>
+    .icon-overlay {
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 80px; /* Adjust as needed */
+      z-index: 999; /* Ensure it's above the video */
+    }
     .top-right {
       position: absolute;
       top: 8px;
       right: 16px;
     }
+
     .pagination-container {
       margin-top: 15px;
       display: flex;
@@ -221,9 +231,14 @@
               color:white; text-align:center;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>SUSPENDED POST!</h6><br/>
               <p>{{user_video.suspended.True}} <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>This Post Has Been Suspended Only You Can See This Call Or Email The Admin For More Information</p></h6>
               {% endif%}
-              <video style="width: 100%;
+              {% if user_video.thumbnail %}
+                <img style="width: 100%;
                 height: 370px;
-                object-fit: cover;" src="{{user_video.video.url}}"></video>
+                object-fit: cover;"src="{{ user_video.thumbnail }}" alt="Thumbnail">
+              {% endif %}
+              <div class="icon-overlay">
+                <a href="{% url 'myvideo' user_video.id %}" ><i class="fa fa-play-circle"></i></a>
+               </div>
                 <div class="top-right">{% if user_video.verification %}
                   <p style="font-size:40px;color:rgb(0, 145, 255)">{{user_video.verification.True}}<i class="fa fa-check-circle"></i></i></p>
                    {% endif%}
@@ -235,13 +250,6 @@
                 height: 50px;
                 overflow: hidden;
                 ">Bio : {{user_video.bio}}</p>
-                <ul class="stars">
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
                 {% if user_video.verification %}
                   {%else%}{% if user_ads.verification %}
                   <p>{{user_video.verification.True}}<i class="fa fa-certificate fa-2x" style=" color:#63E6BE;" aria-hidden="true"></i></p>
