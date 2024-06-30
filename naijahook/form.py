@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Report, Service, postads,review,adsvideos, verify_Post, verify_video, videosreview
 from phonenumber_field.formfields import PhoneNumberField
+import cloudinary.uploader
 
 class postads_form(forms.ModelForm):
     number = PhoneNumberField(region="NG", widget=forms.TextInput(attrs={'class': 'form-control','style': 'width: 350px;','placeholder': 'Phone Number',
@@ -66,6 +67,26 @@ class postads_form(forms.ModelForm):
                 'style': 'max-width: 600px;',
                 }),
             }
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        images = ['main', 'picture1', 'picture2', 'picture3']
+
+        for image_field in images:
+            image = getattr(instance, image_field)
+            if image:
+                response = cloudinary.uploader.upload(
+                    image,
+                    transformation=[
+                        {'overlay': 'watermark.png', 'gravity': 'south_east', 'x': 10, 'y': 10, 'opacity': 50}
+                    ]
+                )
+                setattr(instance, image_field, response['secure_url'])
+
+        if commit:
+            instance.save()
+            self.save_m2m()
+        return instance
+    
 class adsvideos_form(forms.ModelForm):
     
     number = PhoneNumberField(region="NG",required=False, widget=forms.TextInput(attrs={'class': 'form-control','style': 'width: 350px;','placeholder': 'Phone Number',
@@ -75,10 +96,6 @@ class adsvideos_form(forms.ModelForm):
         }))
     telegram = PhoneNumberField(region="NG", required=False, widget=forms.TextInput(attrs={'class': 'form-control','style': 'width: 350px;','placeholder': 'Telegram Number',
         }))
-    services = forms.ModelMultipleChoiceField(
-        queryset=Service.objects.all(),
-        widget=forms.CheckboxSelectMultiple
-        )
     class Meta:
         model = adsvideos
         fields=( "name", "bio","email","number","whatsapp","telegram","State", "shot_time", "full_night","video")
@@ -116,7 +133,7 @@ class adsvideos_form(forms.ModelForm):
                 'class': "form-control",
                 'style': 'max-width: 600px;',
                 }),
-            }            
+            }                
 class review_form(forms.ModelForm):
     class Meta:
         model = review
