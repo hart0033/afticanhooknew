@@ -41,7 +41,7 @@ def home(request):
     else:
         ads = postads.objects.filter(State__State=s, suspended=False,).order_by('-verification', '-date_post')
         
-    paginator = Paginator(ads, 10 )  # Show 10 ads per page
+    paginator = Paginator(ads, 9 )  # Show 10 ads per page
     
     page_number = request.GET.get('page')
     try:
@@ -73,7 +73,7 @@ def videos(request):
         video = adsvideos.objects.filter(State__State=s, suspended=False,).order_by('-verification', '-date_post')
     s = State.objects.all()
     
-    paginator = Paginator(video, 10 )  # Show 10 ads per page
+    paginator = Paginator(video, 9 )  # Show 10 ads per page
     
     page_number = request.GET.get('page')
     try:
