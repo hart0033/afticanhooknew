@@ -21,6 +21,7 @@
      crossorigin="anonymous"></script>
 
 
+
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
     <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
@@ -33,6 +34,8 @@
     <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://vjs.zencdn.net/8.12.0/video-js.css" rel="stylesheet" />
+
    </head>
 
   </head>
@@ -249,8 +252,17 @@
           <div class="col-md-12">
           </div>
           <div class="col-md-6">
-            <h6 style="font-size: xx-small;">Username : {{video.author}}</h6>
-                <video height="500px" width="370px" controls src="{{ video.video.url }}" type="video/mp4"></video>
+            <video
+            id="my-video"
+            class="video-js"
+            preload="auto"
+            poster=""
+            data-setup="{}"
+            controls
+            height="500px"
+            width="370px"
+          >
+            <source src="{{video.video.url}}" type="video/mp4" />
           </div>
           <div class="col-md-6">
             <div class="left-content">
@@ -339,6 +351,7 @@
      <!-- Bootstrap core JavaScript -->
      <script src={% static "jquery/jquery.min.js"%}></script>
      <script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
+     <script src="https://vjs.zencdn.net/8.12.0/video.min.js"></script>
  
  
      <!-- Additional Scripts -->
@@ -385,6 +398,7 @@
            }
        }
      </script>
+     
  
  
    </body>
