@@ -81,7 +81,7 @@ class adsvideos_form(forms.ModelForm):
         )
     class Meta:
         model = adsvideos
-        fields=( "name", "bio","email","number","whatsapp","telegram","State", "shot_time", "full_night","video","services")
+        fields=( "name", "bio","email","number","whatsapp","telegram","State", "shot_time", "full_night","video")
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': "form-control",

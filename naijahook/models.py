@@ -64,7 +64,6 @@ class adsvideos(models.Model):
     shot_time = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     full_night = models.DecimalField(max_digits=10, decimal_places=2,blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True,)
-    service = models.ManyToManyField(Service,)
     view_count = models.PositiveIntegerField(default=0)
     suspended = models.BooleanField(default=False) 
     verification = models.BooleanField(default=False)
