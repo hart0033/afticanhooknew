@@ -16,9 +16,10 @@
 
     <!-- Bootstrap core CSS -->
     <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
+    <link rel="shortcut icon" href="{% static 'images/logo.webp' %}" />
+    <link href="https://vjs.zencdn.net/8.12.0/video-js.css" rel="stylesheet" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7109320166994891"
      crossorigin="anonymous"></script>
-
 
 
     <!-- Additional CSS Files -->
@@ -42,58 +43,7 @@
         font-family: Arial, sans-serif;
       }
   
-      .slider-container {
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        margin: auto;
-        overflow: hidden;
-      }
-  
-      .slides {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-      }
-  
-      .slide {
-        min-width: 100%;
-        box-sizing: border-box;
-      }
-  
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-  
-      .prev, .next {
-        position: absolute;
-        top: 50%;
-        width: 40px;
-        height: 40px;
-        background-color: #333;
-        color: #fff;
-        font-size: 18px;
-        text-align: center;
-        line-height: 40px;
-        cursor: pointer;
-        border: none;
-        outline: none;
-        opacity: 0.7;
-        transition: opacity 0.3s;
-      }
-  
-      .prev:hover, .next:hover {
-        opacity: 1;
-      }
-  
-      .prev {
-        left: 10px;
-      }
-  
-      .next {
-        right: 10px;
-      }
+      
       .tabs {
         display: flex;
         list-style: none;
@@ -215,7 +165,10 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="">About Us</a>
+                <a class="nav-link" href={%url "contact"%}>Contact Us
+                  <span class="sr-only">(current)</span>
+                </a>
+
               </li>
             {% if user.is_authenticated %}
               <li class="nav-item">
@@ -247,7 +200,19 @@
           </div>
           <div class="col-md-6">
             <h6 style="font-size: xx-small;">Username : {{video.author}}</h6>
-                <video height="500px" width="370px" controls src="{{ video.video.url }}" type="video/mp4"></video>
+            <video
+            id="my-video"
+            class="video-js"
+            preload="auto"
+            poster="{{ video.thumbnail }}"
+            data-setup="{}"
+            controls
+            height="500px"
+            width="370px"
+          >
+            <source src="{{video.video.url}}" type="video/mp4" />
+            <source src="{{video.video.url}}" type="video/webm" />
+            </video>
           </div>
           <div class="col-md-6">
             <div class="left-content">
@@ -317,6 +282,7 @@
      <!-- Bootstrap core JavaScript -->
      <script src={% static "jquery/jquery.min.js"%}></script>
      <script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
+     <script src="https://vjs.zencdn.net/8.12.0/video.min.js"></script>
  
  
      <!-- Additional Scripts -->
@@ -363,7 +329,6 @@
            }
        }
      </script>
-     
  
  
    </body>

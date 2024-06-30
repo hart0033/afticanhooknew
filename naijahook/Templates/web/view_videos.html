@@ -44,59 +44,6 @@
         margin: 0;
         font-family: Arial, sans-serif;
       }
-  
-      .slider-container {
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        margin: auto;
-        overflow: hidden;
-      }
-  
-      .slides {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-      }
-  
-      .slide {
-        min-width: 100%;
-        box-sizing: border-box;
-      }
-  
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-  
-      .prev, .next {
-        position: absolute;
-        top: 50%;
-        width: 40px;
-        height: 40px;
-        background-color: #333;
-        color: #fff;
-        font-size: 18px;
-        text-align: center;
-        line-height: 40px;
-        cursor: pointer;
-        border: none;
-        outline: none;
-        opacity: 0.7;
-        transition: opacity 0.3s;
-      }
-  
-      .prev:hover, .next:hover {
-        opacity: 1;
-      }
-  
-      .prev {
-        left: 10px;
-      }
-  
-      .next {
-        right: 10px;
-      }
       .tabs {
         display: flex;
         list-style: none;
@@ -263,6 +210,9 @@
             width="370px"
           >
             <source src="{{video.video.url}}" type="video/mp4" />
+            <source src="{{video.video.url}}" type="video/webm" />
+            </video>
+            
           </div>
           <div class="col-md-6">
             <div class="left-content">
