@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.humanize.templatetags import humanize
 from cloudinary.models import CloudinaryField
+import cloudinary.api
 
 
 
@@ -56,6 +57,7 @@ class adsvideos(models.Model):
     telegram = PhoneNumberField(blank=True, null=True )
     thumbnail = models.URLField(blank=True, null=True)
     video = CloudinaryField('video', resource_type='video')
+    duration = models.FloatField(blank=True, null=True)
     bio = models.TextField(max_length=3000, blank=True, null=True)
     State = models.ForeignKey(State, on_delete=models.CASCADE, blank=True, null=True)
     date_post = models.DateTimeField(auto_now=True)
@@ -69,13 +71,21 @@ class adsvideos(models.Model):
     def __str__(self):
      return f"{self.name} - Posted by: {self.author.username}"
     def save(self, *args, **kwargs):
-            super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
+        if not self.thumbnail or not self.duration:
+            video_info = self.get_video_info()
             if not self.thumbnail:
-                self.thumbnail = self.generate_thumbnail()
-                super().save(update_fields=['thumbnail'])
+                self.thumbnail = self.generate_thumbnail(video_info)
+            if not self.duration:
+                self.duration = video_info['duration']
+            super().save(update_fields=['thumbnail', 'duration'])
 
-    def generate_thumbnail(self):
+    def generate_thumbnail(self, video_info):
         return self.video.build_url(resource_type='video', start_offset=5, format='jpg')
+
+    def get_video_info(self):
+        response = cloudinary.api.resource(self.video.public_id, resource_type='video')
+        return response
 
 
 class verify_video(models.Model):
