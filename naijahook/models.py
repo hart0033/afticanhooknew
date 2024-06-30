@@ -54,6 +54,7 @@ class adsvideos(models.Model):
     number = PhoneNumberField(blank=True, null=True )
     whatsapp = PhoneNumberField(blank=True, null=True )
     telegram = PhoneNumberField(blank=True, null=True )
+    thumbnail = models.URLField(blank=True, null=True)
     video = CloudinaryField('video', resource_type='video')
     bio = models.TextField(max_length=3000, blank=True, null=True)
     State = models.ForeignKey(State, on_delete=models.CASCADE, blank=True, null=True)
@@ -67,7 +68,14 @@ class adsvideos(models.Model):
     verification = models.BooleanField(default=False)
     def __str__(self):
      return f"{self.name} - Posted by: {self.author.username}"
+    def save(self, *args, **kwargs):
+            super().save(*args, **kwargs)
+            if not self.thumbnail:
+                self.thumbnail = self.generate_thumbnail()
+                super().save(update_fields=['thumbnail'])
 
+    def generate_thumbnail(self):
+        return self.video.build_url(resource_type='video', start_offset=5, format='jpg')
 
 
 class verify_video(models.Model):

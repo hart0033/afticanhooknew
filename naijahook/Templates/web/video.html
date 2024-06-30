@@ -236,22 +236,13 @@
          {% for video in video %}
           <div class="col-md-4">
             <div class="product-item">
-              <video
-                id="my-video"
-                class="video-js"
-                preload="auto"
-                poster=""
-                data-setup="{}"
-                style="width: 100%;
-                height: 370px;
-                object-fit: cover;"
-              >
-                <source src="{{video.video.url}}" type="video/mp4" />
-              </video>
-                <div class="top-right">{% if user_video.verification %}
+                <div class="top-right">{% if video.verification %}
                   <p style="font-size:40px;color:rgb(0, 145, 255)">{{video.verification.True}}<i class="fa fa-check-circle"></i></i></p>
                    {% endif%}
                 </div>
+                {% if video.thumbnail %}
+                <img src="{{ video.thumbnail }}" alt="Thumbnail">
+                {% endif %}
                 <div class="icon-overlay">
                  <a href="{% url 'view_videos' video.id %}" ><i class="fa fa-play-circle"></i></a>
                 </div>
