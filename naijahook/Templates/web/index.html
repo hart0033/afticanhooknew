@@ -190,19 +190,28 @@
         <div class="banner-item-01">
           <div class="text-content">
             <h3 style="color: white;">{{sl.list}}</h3>
-            <a class=" btn btn-primary" href="{{sl1.link}}">Open</a>
+            {% if sl.link %}
+            <a class="btn btn-primary" href="{{ sl.link }}">Open</a>
+            {% else %}
+            {% endif %}
           </div>
         </div>
         <div class="banner-item-02">
           <div class="text-content">
             <h3 style="color: white;">{{sl2.list}}</h3>
-            <a class=" btn btn-primary" href="{{sl2.link}}">Open</a>
+            {% if sl2.link %}
+            <a class="btn btn-primary" href="{{ sl2.link }}">Open</a>
+            {% else %}
+            {% endif %}
           </div>
         </div>
         <div class="banner-item-03">
           <div class="text-content">
             <h3 style="color: white;">{{sl3.list}}</h3>
-            <a class=" btn btn-primary" href="{{sl3.link}}">Open</a>
+            {% if sl3.link %}
+            <a class="btn btn-primary" href="{{ sl3.link }}">Open</a>
+            {% else %}
+            {% endif %}
           </div>
         </div>
       </div>
