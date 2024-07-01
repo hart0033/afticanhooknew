@@ -109,6 +109,7 @@ class Report(models.Model):
 class slide(models.Model):
     list = models.CharField(max_length=300)
     picture = models.ImageField()
+    link = models.URLField(max_length=200, blank=True, null=True )
     
     def __str__(self):
         return self.list
@@ -116,12 +117,14 @@ class slide(models.Model):
 class slide2(models.Model):
     list = models.CharField(max_length=300)
     picture = models.ImageField()
+    link = models.URLField(max_length=200, blank=True, null=True )
     
     def __str__(self):
         return self.list
 class slide3(models.Model):
     list = models.CharField(max_length=300)
     picture = models.ImageField()
+    link = models.URLField(max_length=200, blank=True, null=True )
     
     def __str__(self):
         return self.list
