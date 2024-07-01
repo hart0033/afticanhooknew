@@ -245,11 +245,12 @@
                 </div>
               <div class="down-content">
                 <a href="#"><h4>Name : {{user_video.name}}</h4></a>
-                <h6><p>Shot Time : &#8358 {{user_video.shot_time}}</p></h6>
+                
                 <p style="
                 height: 50px;
                 overflow: hidden;
                 ">Bio : {{user_video.bio}}</p>
+                <p>Shot Time : &#8358 {{user_video.shot_time}}</p>
                 {% if user_video.verification %}
                   {%else%}{% if user_ads.verification %}
                   <p>{{user_video.verification.True}}<i class="fa fa-certificate fa-2x" style=" color:#63E6BE;" aria-hidden="true"></i></p>
@@ -265,7 +266,6 @@
              </div>
             </div>
           </div>
-                
                 <div id="id01" class="w3-modal">
                   <div class="w3-modal-content">
                     <div class="w3-container">
@@ -294,7 +294,7 @@
       <span class="page-info">Page {{user_video.number}} of {{user_video.paginator.num_pages}}</span>
       <div class="pagination-buttons">
           {% if user_video.has_previous %}
-              <a class="prev-button" href="?page={{ uer_video.previous_page_number }}">Previous</a>
+              <a class="prev-button" href="?page={{ user_video.previous_page_number }}">Previous</a>
           {% endif %}
           
           {% for num in user_video.paginator.page_range %}
@@ -305,7 +305,7 @@
               {% endif %}
           {% endfor %}
           
-          {% if user_ads.has_next %}
+          {% if user_video.has_next %}
               <a class="next-button" href="?page={{ user_video.next_page_number }}">Next</a>
           {% endif %}
       </div>
