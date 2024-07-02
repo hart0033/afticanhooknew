@@ -60,6 +60,27 @@
   .progress-bar {
     transition: width 0.3s ease-in-out;
   }
+  #loading-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #f3f3f3;
+    z-index: 1000;
+  }
+
+  #loading-bar {
+      width: 0;
+      height: 100%;
+      background-color: #3498db;
+      animation: load 2s linear infinite;
+  }
+
+  @keyframes load {
+      0% { width: 0; }
+      100% { width: 100%; }
+  }
   </style>
   
 
@@ -147,6 +168,9 @@
       padding: 14px;
      "
      >
+     <div id="loading-bar-container" style="display: none;">
+      <div id="loading-bar"></div>
+     </div>
       <form id="post" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <h5>Display Name </h5>
@@ -319,6 +343,18 @@
     
           xhr.send(formData);
         });
+      });
+
+
+      document.getElementById('post').addEventListener('submit', function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+    
+        // Show the loading bar
+        document.getElementById('loading-bar-container').style.display = 'block';
+    
+        // Submit the form programmatically
+        this.submit();
       });
     </script>
 
