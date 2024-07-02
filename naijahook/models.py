@@ -20,7 +20,7 @@ class State(models.Model):
 
 class postads(models.Model):
     name = models.CharField(max_length=300,)
-    email = models.EmailField( max_length=254,null=False, blank=False )
+    email = models.EmailField( max_length=254,blank=True, null=True )
     number = PhoneNumberField(blank=False, null=False )
     whatsapp = PhoneNumberField(blank=True, null=True )
     telegram = PhoneNumberField(blank=True, null=True )
