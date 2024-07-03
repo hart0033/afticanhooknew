@@ -179,7 +179,7 @@ def useraccount(request):
     user = request.user
     user_ads = postads.objects.filter(author=request.user).order_by('-date_post')
     
-    paginator = Paginator(user_ads, 10 )  # Show 10 ads per page
+    paginator = Paginator(user_ads, 9 )  # Show 10 ads per page
     
     page_number = request.GET.get('page')
     try:
@@ -197,7 +197,7 @@ def uservideos(request):
     user = request.user
     user_video = adsvideos.objects.filter(author=request.user).order_by('-date_post')
     
-    paginator = Paginator(user_video, 10 )  # Show 10 ads per page
+    paginator = Paginator(user_video, 9 )  # Show 10 ads per page
     
     page_number = request.GET.get('page')
     try:
