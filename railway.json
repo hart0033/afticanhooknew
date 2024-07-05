@@ -24,7 +24,6 @@
     "sleepApplication": false,
     "restartPolicyType": "ON_FAILURE",
     "region": "africa",
-    
     "restartPolicyMaxRetries": 10
   }
 }
