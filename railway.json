@@ -23,6 +23,7 @@
     "startCommand": "gunicorn hartlord.wsgi:application --log-level debug",
     "sleepApplication": false,
     "restartPolicyType": "ON_FAILURE",
+    "region": "africa",
     "restartPolicyMaxRetries": 10
   }
 }
