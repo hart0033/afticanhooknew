@@ -22,6 +22,7 @@
     "numReplicas": 1,
     "startCommand": "gunicorn hartlord.wsgi:application --log-level debug",
     "sleepApplication": false,
+    "region": "africa",
     "restartPolicyType": "ON_FAILURE",
     "region": "africa",
     "restartPolicyMaxRetries": 10
