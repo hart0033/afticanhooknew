@@ -4,14 +4,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login , logout
 from django.urls import reverse
 from hartlord import settings
-from django.core.mail import send_mail
+from django.core.mail import BadHeaderError , EmailMessage
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_str
 from . tokens import generate_tokens
 from django.utils.http import urlsafe_base64_encode
 from .models import Service, postads, State, slide, slide2,slide3,adsvideos
 from .form import PasswordResetForm, ReportForm, adsvideos_form, postads_form, review_form, verifyForm, verifyvideoForm, videoreview_form
-from django.core.mail import send_mail
+from django.http import HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
@@ -453,6 +453,30 @@ class PasswordResetConfirmView(PasswordResetConfirmView):
 def password_reset_done(request):
     return render (request, 'hookup/password_reset_done.html')
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        full_message = f"Message from {name} <{email}>\n\n{message}"
+
+        email_message = EmailMessage(
+            subject,
+            full_message,
+            settings.DEFAULT_FROM_EMAIL,  # Use your authorized email address here
+            ['support@africanhook.com'],  # The recipient email address
+            reply_to=[email],  # Add the user's email as a reply-to address
+        )
+
+        try:
+            email_message.send(fail_silently=False)
+            return render(request, 'web/success.html')
+        except BadHeaderError:
+            return HttpResponse('Invalid header found.')
+        except Exception as e:
+            return HttpResponse(f'An error occurred: {e}')
+
     return render (request, 'web/contact.html')
 
 def page_not_found(request, exception):
