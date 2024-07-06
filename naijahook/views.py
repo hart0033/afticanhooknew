@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login , logout
 from django.urls import reverse
 from hartlord import settings
-from django.core.mail import BadHeaderError , EmailMessage
+from django.core.mail import BadHeaderError , EmailMessage , send_mail 
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_str
 from . tokens import generate_tokens
