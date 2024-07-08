@@ -236,7 +236,6 @@ def postvideo(request,):
          postads = form.save(commit=False)
          postads.author = request.user
          postads.save()
-         messages.success(request, 'Your ads has been posted successfuly')
          return redirect('uservideos')
     else:
         form = adsvideos_form()
@@ -345,7 +344,6 @@ def delete_post(request, id):
 
     if request.method == 'POST':
         user_ads.delete()
-        messages.success(request, 'YOUR POST HAS BEEN DELETED. ')
         return redirect('useraccount')
 
     return render(request, 'hookup/delete_post.html', {'user_ads': user_ads})
@@ -354,7 +352,6 @@ def delete_video(request, id):
     user_video = get_object_or_404(adsvideos, id=id)
     if request.method == 'POST':
         user_video.delete()
-        messages.success(request, 'YOUR POST HAS BEEN DELETED. ')
         return redirect('useraccount')
 
     return render(request, 'hookup/delete_video.html', {'user_video': user_video})
@@ -367,7 +364,6 @@ def report_post(request, id):
             report = form.save(commit=False)
             report.reported_post = ads
             report.save()
-            messages.success(request, 'Post reported successfully.')
             return redirect('view_post', id=id)  
         else:
             messages.error(request, 'Invalid form submission.')
@@ -416,7 +412,6 @@ def edit_profile(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)
-            messages.success(request, 'Your password has been updated.')
             return redirect('useraccount')
     else:
         form = PasswordChangeForm(request.user)
@@ -429,7 +424,7 @@ def password_reset(request):
             email = form.cleaned_data['email']
             try:
                 user = User.objects.get(email=email)
-                reset_link = f"http://example.com/reset/{user.id}"
+                reset_link = f"http://africanhook.com/reset/{user.id}"
                 message = f"Click the following link to reset your password: {reset_link}"
                 send_mail('Password Reset', message, settings.DEFAULT_FROM_EMAIL, [email])
                 
