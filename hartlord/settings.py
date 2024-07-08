@@ -138,7 +138,8 @@ FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 ]
 
-DATA_UPLOAD_MAX_MEMORY_SIZE = 30728640  # 15 MB in bytes
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100 MB
 
 
 # Internationalization
