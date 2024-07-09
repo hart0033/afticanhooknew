@@ -281,25 +281,42 @@
 <!-- End Products Section -->
 <hr>
 <div class="pagination-container">
-  <span class="page-info">Page {{video.number}} of {{video.paginator.num_pages}}</span>
+  <span class="page-info">Page {{ video.number }} of {{ video.paginator.num_pages }}</span>
   <div class="pagination-buttons">
       {% if video.has_previous %}
           <a class="prev-button" href="?page={{ video.previous_page_number }}">Previous</a>
       {% endif %}
-      
-      {% for num in video.paginator.page_range %}
-          {% if num == video.number %}
-              <strong>{{ num }}</strong>
-          {% else %}
-              <a href="?page={{ num }}">{{ num }}</a>
+
+      {% if video.number > 2 %}
+          <a href="?page=1">1</a>
+          {% if video.number > 3 %}
+              <span>...</span>
           {% endif %}
-      {% endfor %}
+      {% endif %}
+
+      {% if video.number > 1 %}
+          <a href="?page={{ video.number|add:"-1" }}">{{ video.number|add:"-1" }}</a>
+      {% endif %}
+      
+      <strong>{{ video.number }}</strong>
+      
+      {% if video.number < video.paginator.num_pages %}
+          <a href="?page={{ video.number|add:"1" }}">{{ video.number|add:"1" }}</a>
+      {% endif %}
+
+      {% if video.number < video.paginator.num_pages|add:"-1" %}
+          {% if video.number < video.paginator.num_pages|add:"-2" %}
+              <span>...</span>
+          {% endif %}
+          <a href="?page={{ video.paginator.num_pages }}">{{ video.paginator.num_pages }}</a>
+      {% endif %}
       
       {% if video.has_next %}
           <a class="next-button" href="?page={{ video.next_page_number }}">Next</a>
       {% endif %}
   </div>
 </div>
+
 
 
   <footer>

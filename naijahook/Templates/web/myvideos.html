@@ -300,25 +300,42 @@
     
     <hr>
     <div class="pagination-container">
-      <span class="page-info">Page {{user_video.number}} of {{user_video.paginator.num_pages}}</span>
+      <span class="page-info">Page {{ user_video.number }} of {{ user_video.paginator.num_pages }}</span>
       <div class="pagination-buttons">
           {% if user_video.has_previous %}
               <a class="prev-button" href="?page={{ user_video.previous_page_number }}">Previous</a>
           {% endif %}
-          
-          {% for num in user_video.paginator.page_range %}
-              {% if num == user_video.number %}
-                  <strong>{{ num }}</strong>
-              {% else %}
-                  <a href="?page={{ num }}">{{ num }}</a>
+    
+          {% if user_video.number > 2 %}
+              <a href="?page=1">1</a>
+              {% if user_video.number > 3 %}
+                  <span>...</span>
               {% endif %}
-          {% endfor %}
+          {% endif %}
+    
+          {% if video.number > 1 %}
+              <a href="?page={{ user_video.number|add:"-1" }}">{{ user_video.number|add:"-1" }}</a>
+          {% endif %}
+          
+          <strong>{{ user_video.number }}</strong>
+          
+          {% if user_video.number < video.paginator.num_pages %}
+              <a href="?page={{ user_video.number|add:"1" }}">{{ user_video.number|add:"1" }}</a>
+          {% endif %}
+    
+          {% if user_video.number < user_video.paginator.num_pages|add:"-1" %}
+              {% if user_video.number < user_video.paginator.num_pages|add:"-2" %}
+                  <span>...</span>
+              {% endif %}
+              <a href="?page={{ user_video.paginator.num_pages }}">{{ user_video.paginator.num_pages }}</a>
+          {% endif %}
           
           {% if user_video.has_next %}
               <a class="next-button" href="?page={{ user_video.next_page_number }}">Next</a>
           {% endif %}
       </div>
     </div>
+    
 
     <!-- Bootstrap core JavaScript -->
     <script src={% static "jquery/jquery.min.js"%}></script>
