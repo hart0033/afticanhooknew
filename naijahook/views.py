@@ -160,7 +160,7 @@ def signup(request):
           
         # Send welcome email
         subject = "WELCOME TO AFRICANHOOKUP.COM"
-        message = f"HELLO {myuser.first_name}!!\nYOUR ACCOUNT WAS SUCCESSFULLY CREATED!!"
+        message = f"HELLO {myuser.first_name}!!\nYOUR ACCOUNT WAS SUCCESSFULLY CREATED!!\n YOUR CAN NOW POST ADS AND WATCH PORN VIDEOS "
         from_email = settings.EMAIL_HOST_USER
         to_list = [myuser.email]  # Use a list instead of a set for email recipients
         send_mail(subject, message, from_email, to_list, fail_silently=True)
