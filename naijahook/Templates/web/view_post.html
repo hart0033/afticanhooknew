@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link href={% static "https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" %}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    
     <title>{{ads.name}}</title>
 
     <!-- Bootstrap core CSS -->
@@ -25,6 +25,7 @@
 
       gtag('config', 'G-FJLTRQDKL7');
     </script>
+    <meta name="58dca9e99eb5519e4a34d34aae4d70ba24980238" content="58dca9e99eb5519e4a34d34aae4d70ba24980238" />
     
 
 
@@ -299,12 +300,12 @@
               <ul class="social-icons">
                 {% if not ads.whatsapp%}
                 {% else%}
-                  <li ><a style="background-color: #25D366; color:white;" href="https://wa.me/{{ads.whatsapp}}"><i  class="fa fa-whatsapp"></i></a></li>
+                  <li ><a style="background-color: #25D366; color:white;" href="https://wa.me/{{ads.whatsapp}}"><i class="fa-brands fa-whatsapp"></i></a></li>
                 {%endif%}
 
                 {% if not ads.telegram %}
                 {% else%}
-                  <li ><a style="background-color: #0088cc; color:white;" href="https://t.me/{{ads.telegram}}"><i  class="fa fa-telegram"></i></a></li>
+                  <li ><a style="background-color: #0088cc; color:white;" href="https://t.me/{{ads.telegram}}"><i class="fa-brands fa-telegram"></i></a></li>
                 {%endif%}
               </ul>
           </div>
@@ -491,6 +492,6 @@
      
  
  
-   </body>
+  </body>
 
 </html>
