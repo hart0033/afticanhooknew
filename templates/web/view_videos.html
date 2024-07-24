@@ -113,6 +113,20 @@
         padding: 0;
         margin: 0;
     }
+    .icon-overlay {
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 80px; /* Adjust as needed */
+      z-index: 999; /* Ensure it's above the video */
+    }
+    .top-right {
+      position: absolute;
+      top: 8px;
+      right: 16px;}
+
 /* tab*/
     .tabs {
       display: flex;
@@ -171,7 +185,33 @@
     height: 200px;
     display: block;
   }
-  
+  .share-links {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 10px; /* Space between icons */
+    }
+
+    .share-links a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #333; /* Background color for icons */
+        color: #fff; /* Icon color */
+        border-radius: 50%; /* Rounded icons */
+        text-decoration: none;
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
+
+    .share-links a:hover {
+        background-color: #555; /* Darker background on hover */
+    }
+
+    .share-links .fa {
+        font-size: 20px; /* Icon size */
+    }
     </style>
 
   <body>
@@ -289,15 +329,14 @@
               <p style="color: white;"><b>Full Night : &#8358; {{video.full_night}}</b></p>
               <p style="color: white;"><b>Bio : {{video.bio}}</b></p>
               <ul class="social-icons">
-                {% if not video.whatsapp%}
-                {% else%}
-                  <li ><a style="background-color: #25D366; color:white;" href="https://wa.me/{{video.whatsapp}}"><i class="fa-brands fa-whatsapp"></i></a></li>
-                {%endif%}
-
-                {% if not video.telegram %}
-                {% else%}
-                  <li ><a style="background-color: #0088cc; color:white;" href="https://t.me/{{video.telegram}}"><i class="fa-brands fa-telegram"></i></a></li>
-                {%endif%}
+                <div class="share-links">
+                  <p style="text-align: center; color: white;">Share <i class="fa-solid fa-share"></i></p>
+                  <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }} " class="fa-brands fa-whatsapp"></a>
+                  <a href="https://telegram.me/share/url?url={{ request.build_absolute_uri }}&text={{ video.name }}" class="fa-brands fa-telegram"></a>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }} " class="fa-brands fa-facebook"></a>
+                  <a href="https://twitter.com/intent/tweet?text={{ video.name }}&url={{ request.build_absolute_uri }}" class="fa-brands fa-twitter"></a>
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ video.name }}&summary={{ video.bio }}&source={{ request.build_absolute_uri }}" class="fa-brands fa-linkedin"></a>
+              </div>
               </ul>
           </div>
           <div id="tab4" class="tab-content">
@@ -334,6 +373,42 @@
             </div>
         </div>
       </div>
+    </div>
+    <h2 style="text-align: center;">Related Videos</h2>
+    <!-- Related Videos -->
+    <div class="latest-products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+          </div>
+
+
+
+
+
+          {% for related_video in related_videos %}
+          <div class="col-md-4">
+            <div class="product-item">
+                <div class="top-right">{% if related_video.verification %}
+                  <p style="font-size:40px;color:rgb(0, 145, 255)">{{related_video.verification.True}}<i class="fa fa-check-circle"></i></i></p>
+                   {% endif%}
+                </div>
+                {% if related_video.thumbnail %}
+                <img style="width: 100%;
+                height: 370px;
+                object-fit: cover;"src="{{ related_video.thumbnail }}" alt="Thumbnail">
+                {% endif %}
+                <div class="icon-overlay">
+                 <a href="{% url 'view_videos' video.id %}" ><i class="fa fa-play-circle"></i></a>
+                </div>
+              <div class="down-content">
+                <a href="#"><h4>Name : {{related_video.name}}</h4></a>
+                <a  class="btn btn-primary btn-lg btn-block" href="{% url 'view_videos' video.id %}" >View</a>
+              </div>
+            </div>
+          </div>
+          {% endfor%}
+          </div>
     </div>
 
   

@@ -245,6 +245,8 @@ def view_videos(request, id):
     video = adsvideos.objects.get(id=id)
     video.view_count += 1
     video.save()
+    related_videos = adsvideos.objects.filter(author=video.author).exclude(id=id)[:6]
+
     if request.method == 'POST':
        form = videoreview_form(request.POST)
        if form.is_valid():
@@ -254,7 +256,11 @@ def view_videos(request, id):
          form = videoreview_form()
     else:
         form = videoreview_form()
-    return render(request, 'web/view_videos.html', {'video': video, 'form':form})
+    return render(request, 'web/view_videos.html', {
+        'video': video,
+        'form': form,
+        'related_videos': related_videos
+    })
 
 @login_required(login_url="/signin")
 def myvideo(request, id):       
