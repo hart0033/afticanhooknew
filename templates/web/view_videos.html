@@ -399,11 +399,11 @@
                 object-fit: cover;"src="{{ related_video.thumbnail }}" alt="Thumbnail">
                 {% endif %}
                 <div class="icon-overlay">
-                 <a href="{% url 'view_videos' video.id %}" ><i class="fa fa-play-circle"></i></a>
+                 <a href="{% url 'view_videos' related_video.id %}" ><i class="fa fa-play-circle"></i></a>
                 </div>
               <div class="down-content">
                 <a href="#"><h4>Name : {{related_video.name}}</h4></a>
-                <a  class="btn btn-primary btn-lg btn-block" href="{% url 'view_videos' video.id %}" >View</a>
+                <a  class="btn btn-primary btn-lg btn-block" href="{% url 'view_videos' related_video.id %}" >View</a>
               </div>
             </div>
           </div>
