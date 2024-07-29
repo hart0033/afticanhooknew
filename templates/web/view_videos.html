@@ -16,15 +16,13 @@
     <title>{{video.name}}</title>
     <!-- Open Graph meta tags -->
     <meta property="og:title" content="{{ video.name }}" />
-    <meta property="og:description" content="Your video description here" />
-    <meta property="og:image" content="{{ video.thumbnail.url }}" />
+    <meta property="og:image" content="{{ video.thumbnail }}" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
     <meta property="og:type" content="video.other" />
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ video.name }}" />
-    <meta name="twitter:description" content="Your video description here" />
     <meta name="twitter:image" content="{{ video.thumbnail.url }}" />
 
 
