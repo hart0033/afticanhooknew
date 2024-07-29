@@ -142,7 +142,7 @@ FILE_UPLOAD_HANDLERS = [
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # Adjust the size as needed, here 100MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # Adjust the size as needed, here 100MB
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000  # Adjust if you have many fields
-DEFAULT_TIMEOUT = 1000
+DEFAULT_TIMEOUT = 2000
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 

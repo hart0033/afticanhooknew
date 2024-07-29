@@ -245,7 +245,15 @@ def view_videos(request, id):
     video = adsvideos.objects.get(id=id)
     video.view_count += 1
     video.save()
-    related_videos = adsvideos.objects.filter(author=video.author).exclude(id=id)[:6]
+     # Fetch related videos by name
+    related_videos = list(adsvideos.objects.filter(name=video.name).exclude(id=id)[:6])
+    related_count = len(related_videos)
+    if related_count == 0:
+        related_videos = list(adsvideos.objects.filter(author=video.author).exclude(id=id)[:6])
+    # If fewer than 6 related videos by name, add videos by author to complete the list
+    elif related_count < 6:
+        additional_videos = adsvideos.objects.filter(author=video.author).exclude(id__in=[v.id for v in related_videos] + [video.id])[:6 - related_count]
+        related_videos.extend(additional_videos)
 
     if request.method == 'POST':
        form = videoreview_form(request.POST)
