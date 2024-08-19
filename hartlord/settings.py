@@ -94,7 +94,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hartlord.wsgi.application'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://exciting-charisma-production.up.railway.app','https://africanhook.com','https://www.africanhook.com']
+CSRF_TRUSTED_ORIGINS = ['*']
 
 
 
