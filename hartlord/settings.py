@@ -94,7 +94,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hartlord.wsgi.application'
 
 
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://www.africanhhok.com']
 
 
 
@@ -108,7 +108,7 @@ DATABASES = {
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': 'yqiFBjPsYjSgZGZgEpbfEuywBYzUJDEp',
-        'HOST': 'monorail.proxy.rlwy.net',
+        'HOST': 'postgres-vdgf.railway.internal',
         'PORT': '12209',
     }
 }
