@@ -169,14 +169,14 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dqaj51d1c',
-    'API_KEY': '392793589453679',
-    'API_SECRET': 'Ul2fXPOkUrNZeh_u4960ZhNkM6w'
+    'CLOUD_NAME': 'ddfgfbru7',
+    'API_KEY': '132585232768831',
+    'API_SECRET': 'R_TNxd8JDldYac_Ys5_XeawTcZ4'
 }
 CLOUDINARY = {
-    'CLOUD_NAME': 'dqaj51d1c',
-    'API_KEY': '392793589453679',
-    'API_SECRET': 'Ul2fXPOkUrNZeh_u4960ZhNkM6w'
+    'CLOUD_NAME': 'ddfgfbru7',
+    'API_KEY': '132585232768831',
+    'API_SECRET': 'R_TNxd8JDldYac_Ys5_XeawTcZ4'
 }
 
 # CKEditor upload path
