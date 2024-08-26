@@ -94,7 +94,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hartlord.wsgi.application'
 
 
-CSRF_TRUSTED_ORIGINS = ['https://exciting-charisma-production.up.railway.app','https://africanhook.com','https://www.africanhook.com']
+CSRF_TRUSTED_ORIGINS = ['https://www.africanhook.com','https://africanhook.com']
 
 
 
@@ -107,9 +107,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'yqiFBjPsYjSgZGZgEpbfEuywBYzUJDEp',
-        'HOST': 'monorail.proxy.rlwy.net',
-        'PORT': '12209',
+        'PASSWORD': 'XTpjhhyYAKFPiJqsjLtniYalXoxxhFnd',
+        'HOST': 'autorack.proxy.rlwy.net',
+        'PORT': '38425',
     }
 }
 
@@ -142,7 +142,7 @@ FILE_UPLOAD_HANDLERS = [
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # Adjust the size as needed, here 100MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # Adjust the size as needed, here 100MB
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000  # Adjust if you have many fields
-DEFAULT_TIMEOUT = 2000
+DEFAULT_TIMEOUT = 1000
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -169,14 +169,14 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dqaj51d1c',
-    'API_KEY': '392793589453679',
-    'API_SECRET': 'Ul2fXPOkUrNZeh_u4960ZhNkM6w'
+    'CLOUD_NAME': 'ddfgfbru7',
+    'API_KEY': '132585232768831',
+    'API_SECRET': 'R_TNxd8JDldYac_Ys5_XeawTcZ4'
 }
 CLOUDINARY = {
-    'CLOUD_NAME': 'dqaj51d1c',
-    'API_KEY': '392793589453679',
-    'API_SECRET': 'Ul2fXPOkUrNZeh_u4960ZhNkM6w'
+    'CLOUD_NAME': 'ddfgfbru7',
+    'API_KEY': '132585232768831',
+    'API_SECRET': 'R_TNxd8JDldYac_Ys5_XeawTcZ4'
 }
 
 # CKEditor upload path
