@@ -11,12 +11,23 @@
     <meta name="author" content="">
     <link href={% static "https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet" %}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 
-    <title>{{ads.name}}</title>
+    <title>{{video.name}}</title>
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="{{ video.name }}" />
+    <meta property="og:image" content="{{ video.thumbnail }}" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="video.other" />
+
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ video.name }}" />
+    <meta name="twitter:image" content="{{ video.thumbnail.url }}" />
+
 
     <!-- Bootstrap core CSS -->
     <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
-    <link rel="shortcut icon" href="{% static 'images/logo.webp' %}" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJLTRQDKL7"></script>
     <script>
@@ -26,6 +37,8 @@
 
       gtag('config', 'G-FJLTRQDKL7');
     </script>
+    <meta name="58dca9e99eb5519e4a34d34aae4d70ba24980238" content="58dca9e99eb5519e4a34d34aae4d70ba24980238" />
+    <link rel="shortcut icon" href="{% static 'images/logo.webp' %}" />
     
 
 
@@ -34,9 +47,16 @@
     <link rel="stylesheet" href={% static "css/fontawesome.css" %}>
     <link rel="stylesheet" href={% static "css/templatemo-sixteen.css" %}>
     <link rel="stylesheet" href={% static "css/owl.css" %}>
+    <link rel="stylesheet" href={% static "css/new.css" %}>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://vjs.zencdn.net/8.12.0/video-js.css" rel="stylesheet" />
+
    </head>
 
   </head>
@@ -45,12 +65,79 @@
         margin: 0;
         font-family: Arial, sans-serif;
       }
+  
+      .slider-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+        overflow: hidden;
+      }
+  
+      .slides {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+  
+      .slide {
+        min-width: 100%;
+        box-sizing: border-box;
+      }
+  
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+  
+      .prev, .next {
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        background-color: #333;
+        color: #fff;
+        font-size: 18px;
+        text-align: center;
+        line-height: 40px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+      }
+  
+      .prev:hover, .next:hover {
+        opacity: 1;
+      }
+  
+      .prev {
+        left: 10px;
+      }
+  
+      .next {
+        right: 10px;
+      }
       .tabs {
         display: flex;
         list-style: none;
         padding: 0;
         margin: 0;
     }
+    .icon-overlay {
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 80px; /* Adjust as needed */
+      z-index: 999; /* Ensure it's above the video */
+    }
+    .top-right {
+      position: absolute;
+      top: 8px;
+      right: 16px;}
+
 /* tab*/
     .tabs {
       display: flex;
@@ -109,7 +196,33 @@
     height: 200px;
     display: block;
   }
-  
+  .share-links {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 10px; /* Space between icons */
+    }
+
+    .share-links a {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #333; /* Background color for icons */
+        color: #fff; /* Icon color */
+        border-radius: 50%; /* Rounded icons */
+        text-decoration: none;
+        transition: background-color 0.3s ease; /* Smooth transition */
+    }
+
+    .share-links a:hover {
+        background-color: #555; /* Darker background on hover */
+    }
+
+    .share-links .fa {
+        font-size: 20px; /* Icon size */
+    }
     </style>
 
   <body>
@@ -128,7 +241,7 @@
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href=""><h2>Sixteen <em>Clothing</em></h2></a>
+          <a class="navbar-brand" href="{%url "home"%}"><h2>African <em>Hook</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -136,10 +249,33 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link" href={%url "home"%}>Home<i class="fa fa-home"></i>
+                  <span class="sr-only">(current)</span>
                 </a>
               </li> 
+              <li class="nav-item active">
+                <a class="nav-link" href={%url "videos"%}>Videos
+                </a>
+              </li>
               <li class="nav-item">
-                <a class="nav-link" href="/post">Post Ads<i class="fa fa-plus-circle"></i></a>
+                <button onclick="document.getElementById('id01').style.display='block'">Post Ads</button>
+                <div class="w3-container">
+                  
+                  <div id="id01" class="w3-modal">
+                    <div class="w3-modal-content">
+                      <div class="w3-container">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button">&times;</span>
+                        <a href="{%url "post" %}">
+                          <img src="{% static 'images/picon.webp' %}" alt="">
+                          Post Picture
+                        </a>
+                        <a href="{%url "postvideo" %}">
+                          <img src="{% static 'images/vicon.png' %}" alt="">
+                          Post Video
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
 
               <li class="nav-item">
@@ -177,8 +313,17 @@
           <div class="col-md-12">
           </div>
           <div class="col-md-6">
-            <h6 style="font-size: xx-small;">Username : {{ads.author}}</h6>
-                <video height="500px" width="500px" controls src="{{ ads.video.url }}" type="video/mp4"></video>
+            <video
+            id="my-video"
+            class="video-js"
+            preload="auto"
+            poster="{{ video.thumbnail }}"
+            data-setup="{}"
+            controls
+            height="500px"
+            width="370px"
+          >
+            <source src="{{video.video.url}}" type="video/mp4" />
           </div>
           <div class="col-md-6">
             <div class="left-content">
@@ -187,36 +332,35 @@
                 <li class="tab" onclick="showTab('tab4')">Reviews</li>
             </ul>
             <div id="tab1" class="tab-content active">
-              <p><h4 style="color: white;">Name : {{ads.name}}</h4></p>
-              <p style="color: white;"><b>State : {{ads.State}}</b></p>
-              <a style="color: white;" href="tel:{{ads.number}}"><p style="color: white;"><b><i  class="fa fa-phone"></i> : {{ads.number}}</b></p></a>
-              <a style="color: white;" href="mailto:{{ads.email}}"><p style="color: white;"><b><i  class="fa fa-envelope"></i> : {{ads.email}}</b></p></a>
-              <p style="color: white;"><b>Shot Time : &#8358; {{ads.shot_time}}</b></p>
-              <p style="color: white;"><b>Full Night : &#8358; {{ads.full_night}}</b></p>
-              <p style="color: white;"><b>Bio : {{ads.bio}}</b></p>
+              <p><h4 style="color: white;">Name : {{video.name}}</h4></p>
+              <p style="color: white;"><b>State : {{video.State}}</b></p>
+              <a style="color: white;" href="tel:{{video.number}}"><p style="color: white;"><b><i  class="fa fa-phone"></i> : {{video.number}}</b></p></a>
+              <a style="color: white;" href="mailto:{{video.email}}"><p style="color: white;"><b><i  class="fa fa-envelope"></i> : {{video.email}}</b></p></a>
+              <p style="color: white;"><b>Shot Time : &#8358; {{video.shot_time}}</b></p>
+              <p style="color: white;"><b>Full Night : &#8358; {{video.full_night}}</b></p>
+              <p style="color: white;"><b>Bio : {{video.bio}}</b></p>
               <ul class="social-icons">
-                {% if not ads.whatsapp%}
-                {% else%}
-                  <li ><a style="background-color: #25D366; color:white;" href="https://wa.me/{{ads.whatsapp}}"><i  class="fa fa-whatsapp"></i></a></li>
-                {%endif%}
-
-                {% if not ads.telegram %}
-                {% else%}
-                  <li ><a style="background-color: #0088cc; color:white;" href="https://t.me/{{ads.telegram}}"><i  class="fa fa-telegram"></i></a></li>
-                {%endif%}
+                <div class="share-links">
+                  <p style="text-align: center; color: white;">Share <i class="fa-solid fa-share"></i></p>
+                  <a href="https://api.whatsapp.com/send?text={{ request.build_absolute_uri }} " class="fa-brands fa-whatsapp"></a>
+                  <a href="https://telegram.me/share/url?url={{ request.build_absolute_uri }}&text={{ video.name }}" class="fa-brands fa-telegram"></a>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }} " class="fa-brands fa-facebook"></a>
+                  <a href="https://twitter.com/intent/tweet?text={{ video.name }}&url={{ request.build_absolute_uri }}" class="fa-brands fa-twitter"></a>
+                  <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ video.name }}&summary={{ video.bio }}&source={{ request.build_absolute_uri }}" class="fa-brands fa-linkedin"></a>
+              </div>
               </ul>
           </div>
           <div id="tab4" class="tab-content">
             <div>
               <h3>Reviews....</h3>
-              {% if not ads.reviews.all %}
+              {% if not video.videoreviews.all %}
                 <p style="color: white;"> NO REVIEWS ..... </p>
               {% else %}
-                {% for review in ads.reviews.all %}
+                {% for videoreview in video.videoreviews.all %}
                   <strong
                   style="text-transform: capitalize; "
-                  >{{review.name}} - </strong> <small>{{review.date_post}} </small>
-                  <p style="color: white;">{{review.body}}<br/></p>
+                  >{{videoreview.name}} - </strong> <small>{{videoreview.date_post}} </small>
+                  <p style="color: white;">{{videoreview.body}}<br/></p>
                 {%endfor%}
               {%endif%}  
             </div>
@@ -236,10 +380,45 @@
           </div>
         </div> 
           <hr>
-          <p>Total Post Viewed: <i  class="fa fa-eye"></i> {{ ads.view_count }}</p>
+          <p>Total Post Viewed: <i  class="fa fa-eye"></i> {{ video.view_count }}</p>
             </div>
         </div>
       </div>
+    </div>
+    <h2 style="text-align: center;">More Videos</h2>
+    <!-- Related Videos -->
+    <div class="latest-products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+          </div>
+
+
+
+
+
+          {% for related_video in related_videos %}
+          <div class="col-md-4">
+            <div class="product-item">
+                <div class="top-right">{% if related_video.verification %}
+                  <p style="font-size:40px;color:rgb(0, 145, 255)">{{related_video.verification.True}}<i class="fa fa-check-circle"></i></i></p>
+                   {% endif%}
+                </div>
+                {% if related_video.thumbnail %}
+                <a href="{% url 'view_videos' related_video.id %}" ><img style="width: 100%;
+                  height: 370px;
+                  object-fit: cover;"src="{{ related_video.thumbnail }}" alt="Thumbnail"></a>
+                {% endif %}
+                <div class="icon-overlay">
+                 <a href="{% url 'view_videos' related_video.id %}" ><i class="fa fa-play-circle"></i></a>
+                </div>
+              <div class="down-content">
+                <a href="{% url 'view_videos' related_video.id %}"><h4>Name : {{related_video.name}}</h4></a>
+              </div>
+            </div>
+          </div>
+          {% endfor%}
+          </div>
     </div>
 
   
@@ -256,7 +435,7 @@
         <div class="row">
           <div class="col-md-12">
            <div class="inner-content">
-             <p>Copyright &copy; 2024 </a></p>
+             <p>Copyright &copy; 2024 Africanhook.com</p>
            </div>
          </div>
        </div>
@@ -267,6 +446,7 @@
      <!-- Bootstrap core JavaScript -->
      <script src={% static "jquery/jquery.min.js"%}></script>
      <script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
+     <script src="https://vjs.zencdn.net/8.12.0/video.min.js"></script>
  
  
      <!-- Additional Scripts -->
@@ -314,31 +494,42 @@
        }
      </script>
      <script>
-      (function(__htavim){
+      (function(vwrfuk){
       var d = document,
           s = d.createElement('script'),
           l = d.scripts[d.scripts.length - 1];
-      s.settings = __htavim || {};
-      s.src = "\/\/jubilantsignal.com\/dGmhF\/zjd.G\/ljtePM3vpCvMb\/mhVHJ\/ZeDC0R1NNLDbMjwsMGj_gEwwL\/T\/U\/0dMXz\/Ady_ObDkET";
+      s.settings = vwrfuk || {};
+      s.src = "\/\/jubilantsignal.com\/cND\/9.6SbJ2\/5pljS\/WXQF9\/N\/T_Q\/yCOsTSk\/5dNoiM0g1ZNDDvIT5eO\/TYkO3-";
       s.async = true;
+      s.referrerPolicy = 'no-referrer-when-downgrade';
       l.parentNode.insertBefore(s, l);
-      })()
+      })({})
       </script>
       <script>
-        (function(wyinp){
+        (function(zqq){
         var d = document,
             s = d.createElement('script'),
             l = d.scripts[d.scripts.length - 1];
-        s.settings = wyinp || {};
-        s.src = "\/\/terrificdark.com\/b\/XTVisZd.Gpll0yYtW-dVi\/YmWB5UugZEXSIL\/WemmO9\/ugZeUclmk\/PeTiUe0RM\/zZAnzfMQDVI\/tINiTeQ\/zIMnDRMlw\/M-wb";
+        s.settings = zqq || {};
+        s.src = "\/\/terrificdark.com\/b.XXVLsJdPGZlz0vY\/WhdUiWYtWY5xupZ\/XlIV\/KeAmH9\/u\/Z\/UklzkiP\/TlUY0eM\/zHAWzTMFDrIXtQN\/T\/QUzcMFDlMWwZMrws";
         s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
         l.parentNode.insertBefore(s, l);
         })({})
         </script>
+        <script>
+          (function(vfgxh){
+          var d = document,
+              s = d.createElement('script'),
+              l = d.scripts[d.scripts.length - 1];
+          s.settings = vfgxh || {};
+          s.src = "\/\/jubilantsignal.com\/cYDS9.6sb_2\/5TlGSfW\/Qh9cNOTuQY3sMjj\/AR1_NoCg0K1ZNEDOcFyBMzDLU\/1S";
+          s.async = true;
+          s.referrerPolicy = 'no-referrer-when-downgrade';
+          l.parentNode.insertBefore(s, l);
+          })({})
+          </script>
         
      
- 
- 
-   </body>
 
 </html>
