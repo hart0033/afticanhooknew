@@ -77,7 +77,7 @@ class adsvideos_form(forms.ModelForm):
         }))
     class Meta:
         model = adsvideos
-        fields=( "name", "bio","email","number","whatsapp","telegram","State", "shot_time", "full_night","video")
+        fields=( "name", "bio","video")
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': "form-control",
@@ -88,25 +88,6 @@ class adsvideos_form(forms.ModelForm):
                 'class': "form-control",
                 'style': 'max-width: 700px;',
                 'placeholder': 'About Your Posts'
-                }),
-            'email': forms.EmailInput(attrs={
-                'class': "form-control",
-                'style': 'max-width: 600px;',
-                'placeholder': 'Email'
-                },),
-            'State': forms.Select(attrs={
-                'class': "form-control",
-                'style': 'max-width: 600px;',
-                }),
-            'shot_time': forms.NumberInput(attrs={
-                'class': "form-control",
-                'placeholder': 'Amount',
-                'style': 'max-width: 600px;',
-                }),
-            'full_night': forms.NumberInput(attrs={
-                'class': "form-control",
-                'placeholder': 'Amount',
-                'style': 'max-width: 600px;',
                 }),
             'video': forms.ClearableFileInput(attrs={
                 'class': "form-control",

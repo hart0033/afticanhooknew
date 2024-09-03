@@ -23,7 +23,7 @@
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ video.name }}" />
-    <meta name="twitter:image" content="{{ video.thumbnail }}" />
+    <meta name="twitter:image" content="{{ video.thumbnail.url }}" />
 
 
     <!-- Bootstrap core CSS -->
@@ -333,11 +333,6 @@
             </ul>
             <div id="tab1" class="tab-content active">
               <p><h4 style="color: white;">Name : {{video.name}}</h4></p>
-              <p style="color: white;"><b>State : {{video.State}}</b></p>
-              <a style="color: white;" href="tel:{{video.number}}"><p style="color: white;"><b><i  class="fa fa-phone"></i> : {{video.number}}</b></p></a>
-              <a style="color: white;" href="mailto:{{video.email}}"><p style="color: white;"><b><i  class="fa fa-envelope"></i> : {{video.email}}</b></p></a>
-              <p style="color: white;"><b>Shot Time : &#8358; {{video.shot_time}}</b></p>
-              <p style="color: white;"><b>Full Night : &#8358; {{video.full_night}}</b></p>
               <p style="color: white;"><b>Bio : {{video.bio}}</b></p>
               <ul class="social-icons">
                 <div class="share-links">
@@ -385,7 +380,7 @@
         </div>
       </div>
     </div>
-    <h2 style="text-align: center;">Related Videos</h2>
+    <h2 style="text-align: center;">More Videos</h2>
     <!-- Related Videos -->
     <div class="latest-products">
       <div class="container">
@@ -405,16 +400,15 @@
                    {% endif%}
                 </div>
                 {% if related_video.thumbnail %}
-                <img style="width: 100%;
-                height: 370px;
-                object-fit: cover;"src="{{ related_video.thumbnail }}" alt="Thumbnail">
+                <a href="{% url 'view_videos' related_video.id %}" ><img style="width: 100%;
+                  height: 370px;
+                  object-fit: cover;"src="{{ related_video.thumbnail }}" alt="Thumbnail"></a>
                 {% endif %}
                 <div class="icon-overlay">
                  <a href="{% url 'view_videos' related_video.id %}" ><i class="fa fa-play-circle"></i></a>
                 </div>
               <div class="down-content">
-                <a href="#"><h4>Name : {{related_video.name}}</h4></a>
-                <a  class="btn btn-primary btn-lg btn-block" href="{% url 'view_videos' related_video.id %}" >View</a>
+                <a href="{% url 'view_videos' related_video.id %}"><h4>Name : {{related_video.name}}</h4></a>
               </div>
             </div>
           </div>
@@ -495,27 +489,41 @@
        }
      </script>
      <script>
-      (function(axes){
+      (function(vwrfuk){
       var d = document,
           s = d.createElement('script'),
           l = d.scripts[d.scripts.length - 1];
-      s.settings = axes || {};
-      s.src = "\/\/jubilantsignal.com\/cgD\/9W6.bn2r5YlgSDWMQC9GNGTOQDy\/OXTiku5\/Nhi-0b1\/NZDtI\/5tOHTnk\/3d";
+      s.settings = vwrfuk || {};
+      s.src = "\/\/jubilantsignal.com\/cND\/9.6SbJ2\/5pljS\/WXQF9\/N\/T_Q\/yCOsTSk\/5dNoiM0g1ZNDDvIT5eO\/TYkO3-";
       s.async = true;
+      s.referrerPolicy = 'no-referrer-when-downgrade';
       l.parentNode.insertBefore(s, l);
       })({})
       </script>
       <script>
-        (function(sywhz){
+        (function(zqq){
         var d = document,
             s = d.createElement('script'),
             l = d.scripts[d.scripts.length - 1];
-        s.settings = sywhz || {};
-        s.src = "\/\/terrificdark.com\/b.XAVpsJdLGdl\/0yYdWLdaioYkWJ5luEZeXZIY\/dermv9\/u\/ZbUElykYP\/TpU\/0LMEzgAyzoMLDmICtHNnTOQXzGMuDUMlweMbws";
+        s.settings = zqq || {};
+        s.src = "\/\/terrificdark.com\/b.XXVLsJdPGZlz0vY\/WhdUiWYtWY5xupZ\/XlIV\/KeAmH9\/u\/Z\/UklzkiP\/TlUY0eM\/zHAWzTMFDrIXtQN\/T\/QUzcMFDlMWwZMrws";
         s.async = true;
+        s.referrerPolicy = 'no-referrer-when-downgrade';
         l.parentNode.insertBefore(s, l);
         })({})
         </script>
+        <script>
+          (function(vfgxh){
+          var d = document,
+              s = d.createElement('script'),
+              l = d.scripts[d.scripts.length - 1];
+          s.settings = vfgxh || {};
+          s.src = "\/\/jubilantsignal.com\/cYDS9.6sb_2\/5TlGSfW\/Qh9cNOTuQY3sMjj\/AR1_NoCg0K1ZNEDOcFyBMzDLU\/1S";
+          s.async = true;
+          s.referrerPolicy = 'no-referrer-when-downgrade';
+          l.parentNode.insertBefore(s, l);
+          })({})
+          </script>
         
      
 
