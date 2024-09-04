@@ -256,14 +256,7 @@
                  <p style="
                  height: 50px;
                  overflow: hidden;
-                 ">Bio : {{user_video.bio}}</p>
-                 <p>Shot Time : &#8358 {{user_video.shot_time}}</p>
-                 {% if user_video.verification %}
-                   {%else%}{% if user_ads.verification %}
-                   <p>{{user_video.verification.True}}<i class="fa fa-certificate fa-2x" style=" color:#63E6BE;" aria-hidden="true"></i></p>
-                   {% endif%}
-                   <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> This Post Is Not Verified Click On The Link To Verify Your Post <a href="{% url "verify_video" user_video.id %}">Verify Post</a></p>
-                 {% endif%}
+                 ">
                 <div>
                   <a class="btn btn-primary" href="{% url 'myvideo' user_video.id %}">View</a>
                   <a class="btn btn-success" href="{% url 'edit_video' user_video.id %}">Edit Video</a>

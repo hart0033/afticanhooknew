@@ -4,6 +4,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.humanize.templatetags import humanize
 from cloudinary.models import CloudinaryField
 import cloudinary.api
+from moviepy.editor import VideoFileClip
+import tempfile
+import urllib.request
+import os
 
 
 
@@ -50,19 +54,51 @@ class verify_Post(models.Model):
     
     
 class adsvideos(models.Model):
-    name = models.CharField(max_length=300,)
+    name = models.CharField(max_length=300)
     thumbnail = models.URLField(blank=True, null=True)
     video = CloudinaryField('video', resource_type='video')
     bio = models.TextField(max_length=3000, blank=True, null=True)
     date_post = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True,)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     view_count = models.PositiveIntegerField(default=0)
-    suspended = models.BooleanField(default=False) 
+    suspended = models.BooleanField(default=False)
     verification = models.BooleanField(default=False)
+    duration = models.FloatField(null=True, blank=True)
+
     def __str__(self):
-     return f"{self.name} - Posted by: {self.author.username}"
+        return f"{self.name} - Posted by: {self.author.username}"
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+
+        # Calculate video duration in minutes if not already set
+        if self.video and not self.duration:
+            video_url = self.video.url
+            temp_video_path = 'temp_video.mp4'
+            
+            try:
+                # Download video from Cloudinary
+                urllib.request.urlretrieve(video_url, temp_video_path)
+
+                # Calculate duration using MoviePy
+                with VideoFileClip(temp_video_path) as clip:
+                    duration_seconds = clip.duration
+                    duration_minutes = duration_seconds / 60  # Convert seconds to minutes
+
+                    self.duration = round(duration_minutes, 2)
+
+                # Save the duration field
+                super().save(update_fields=['duration'])
+
+            except Exception as e:
+                print(f"Error calculating video duration: {e}")
+
+            finally:
+                # Clean up the temporary file
+                if os.path.exists(temp_video_path):
+                    os.remove(temp_video_path)
+
+        # Generate thumbnail if not already set
         if not self.thumbnail:
             self.thumbnail = self.generate_thumbnail()
             super().save(update_fields=['thumbnail'])

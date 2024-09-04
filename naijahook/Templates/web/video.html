@@ -28,7 +28,6 @@
     </script>
     <meta name="58dca9e99eb5519e4a34d34aae4d70ba24980238" content="58dca9e99eb5519e4a34d34aae4d70ba24980238" />
     <link rel="shortcut icon" href="{% static 'images/logo.webp' %}" />
-    <meta name="eroads_" content="e184588418ebe3c5129b257799826f1b" />
     
 
 
@@ -236,6 +235,7 @@
                 </div>
               <div class="down-content">
                 <a href="{% url 'view_videos' video.id %}"><h4>Name : {{video.name}}</h4></a>
+                <p>Duration: {{ video.duration }} min</p>
               </div>
             </div>
           </div>
