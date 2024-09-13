@@ -14,14 +14,14 @@
     
     <title>{{ads.name}}</title>
     <meta property="og:title" content="{{ ads.name }}" />
-    <meta property="og:image" content="{{ ads.main }}" />
+    <meta property="og:image" content="{{ ads.main.url }}" />
     <meta property="og:url" content="{{ request.build_absolute_uri }}" />
     <meta property="og:type" content="image.other" />
 
     <!-- Twitter Card meta tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{{ ads.name }}" />
-    <meta name="twitter:image" content="{{ video.main }}" />
+    <meta name="twitter:image" content="{{ ads.main.url }}" />
 
     <!-- Bootstrap core CSS -->
     <link href={% static "bootstrap/css/bootstrap.min.css" %} rel="stylesheet" >
