@@ -303,6 +303,7 @@ def view_post(request, id):
     ads_formatted_view_count = format_view_count(ads.view_count)
     ads.view_count +=1
     ads.save()
+    related_posts = postads.objects.filter(State=ads.State).exclude(id=ads.id)[:4]
     serv = Service.objects.all()
     if request.method == 'POST':
        form = review_form(request.POST)
@@ -313,7 +314,7 @@ def view_post(request, id):
          form = review_form()
     else:
         form = review_form()
-    return render(request, 'web/view_post.html', {'ads': ads, 'form':form, 'serv': serv, 'ads_formatted_view_count': ads_formatted_view_count})
+    return render(request, 'web/view_post.html', {'ads': ads, 'form':form, 'serv': serv, 'ads_formatted_view_count': ads_formatted_view_count, 'related_posts': related_posts})
 @login_required(login_url="/signin")
 def userview_post(request, id):
     user_ads = postads.objects.get(id=id)
